@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UMA x la Pública</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Updated Font Awesome for icons -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,6 +57,62 @@
             padding: 0.2rem;
             border-radius: 0.2rem;
         }
+        .reivindicacion {
+            border: 2px solid #1b5e20; /* Green border */
+            background-color: #e8f5e9; /* Light green background */
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        .reivindicacion h3 {
+            margin-top: 0;
+            color: #1b5e20; /* Green for titles */
+        }
+        .reivindicacion h3 i {
+            margin-right: 0.5rem; /* Add spacing between icon and text */
+        }
+        .miembro {
+            border: 2px solid #1b5e20; /* Green border */
+            background-color: #e8f5e9; /* Light green background */
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        .colectivos-container {
+            display: flex;
+            flex-direction: column; /* Single column layout */
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+        .colectivo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: #e8f5e9; /* Light green background for each colectivo */
+            border: 1px solid #1b5e20; /* Green border */
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+        .colectivo img {
+            width: 80px; /* Uniform logo size */
+            height: auto;
+            border-radius: 0.5rem;
+        }
+        .colectivo span {
+            font-weight: bold;
+            color: #1b5e20; /* Green text */
+        }
+        @media (max-width: 768px) {
+            .colectivo {
+                flex: 1 1 calc(50% - 1rem); /* Two items per row on smaller screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .colectivo {
+                flex: 1 1 100%; /* One item per row on very small screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -66,31 +124,68 @@
             <h2>¿Quiénes somos?</h2>
             <p>La Coordinadora UMA x la Pública es una aglomeración de distintos colectivos que luchan en defensa de la universidad pública. Nuestro objetivo es garantizar una educación accesible, inclusiva y de calidad para todas las personas.</p>
             <p>Colectivos que forman parte de la coordinadora:</p>
-            <ul>
-                <li>PSI-UMA (Profesores Sustitutos Interinos)</li>
-                <li>CIMA (Investigadores de Málaga)</li>
-                <li>Ayudantes Doctores - Plazas 2023</li>
-                <li>CPAD (Profesores Ayudantes Doctores)</li>
-                <li>ACUMA (Acreditados a Cátedra)</li>
-                <li>Frente de estudiantes</li>
-                <li>SIAM (Sindicato de Apoyo Mutuo de la Universidad de Málaga)</li>
-                <li>CCOO (Comisiones Obreras)</li>
-            </ul>
+            <div class="colectivos-container">
+                <div class="colectivo">
+                    <span>PSI-UMA (Profesores Sustitutos Interinos)</span>
+                </div>
+                <div class="colectivo">
+                    <img src="cima.jpg" alt="CIMA Logo">
+                    <span>CIMA (Investigadores de Málaga)</span>
+                </div>
+                <div class="colectivo">
+                    <span>Ayudantes Doctores - Plazas 2023</span>
+                </div>
+                <div class="colectivo">
+                    <img src="cpad.jpg" alt="CPAD Logo">
+                    <span>CPAD (Profesores Ayudantes Doctores)</span>
+                </div>
+                <div class="colectivo">
+                    <img src="acuma.png" alt="ACUMA Logo">
+                    <span>ACUMA (Acreditados a Cátedra)</span>
+                </div>
+                <div class="colectivo">
+                    <img src="frente.jpeg" alt="Frente de estudiantes Logo">
+                    <span>Frente de estudiantes</span>
+                </div>
+                <div class="colectivo">
+                    <img src="siam.jpeg" alt="SIAM Logo">
+                    <span>SIAM (Sindicato de Apoyo Mutuo de la Universidad de Málaga)</span>
+                </div>
+                <div class="colectivo">
+                    <img src="ccoo.jpeg" alt="CCOO Logo">
+                    <span>CCOO (Comisiones Obreras)</span>
+                </div>
+            </div>
         </section>
         <section>
             <h2>Nuestras reivindicaciones</h2>
             <p>La Universidad de Málaga, como el resto de universidades públicas españolas, vive momentos complicados. Desde la Coordinadora UMA por la Pública, que agrupa a diferentes colectivos y sindicatos, nos unimos para exigir un cambio profundo en las condiciones laborales, académicas y sociales que garanticen el futuro de nuestra universidad como el ascensor social que vertebra nuestra sociedad desde la igualdad de oportunidades. La injusta infrafinanciación de la Junta de Andalucía, unida a la actitud cómplice y pasiva del equipo de gobierno, que gestiona la institución de espaldas a la comunidad universitaria, nos ha llevado a una situación de asfixia económica a través de un Plan de Ajuste Económico que están perpetuando la precariedad, la falta de estabilidad, la desigualdad salarial y el deterioro del sistema educativo público.</p>
             <p>Desde UMA por la Pública, tenemos claro que el contexto actual, además, se ha visto agravado por el desembarco de las universidades privadas en nuestra ciudad en un marco aperturista sin precedentes.</p>
-            <p>Es necesario garantizar una <span class="highlight">financiación adecuada y justa para la UMA</span>, que revierta la infrafinanciación histórica que arrastramos desde 2012 y asegure recursos suficientes para el desarrollo académico y la investigación. La universidad debe ser una prioridad para la Junta de Andalucía y, para el equipo que gobierna la institución, una máxima que defender continuamente.</p>
-            <p>La <span class="highlight">promoción y estabilización de la plantilla</span> son un derecho y deben estar desvinculadas de limitaciones presupuestarias coyunturales que afectan injustamente a nuestro futuro profesional. Exigimos planes de estabilización que permitan el desarrollo de la carrera profesional para todo el personal docente e investigador (PDI), como son personal interino, investigador, asociados y ayudantes doctores, y para el personal técnico, de gestión, administración y servicios (PTGAS). Exigimos la reactivación de los procesos de promoción para los ayudantes acreditados a titular y el personal funcionario acreditado a cátedra, con un calendario claro y transparente.</p>
-            <p>Reivindicamos una <span class="highlight">equiparación salarial entre todos los colectivos del PDI</span>, así como el reconocimiento y pago inmediato de los complementos salariales para todos los contratos laborales. Estamos cansados de que la Junta de Andalucía nos pague en cómodos plazos y al 0% de interés. Además, se deben activar las contrataciones paralizadas y asegurar una oferta de empleo público que cubra las necesidades de renovación de la plantilla y que reduzca la temporalidad y precariedad laboral.</p>
-            <p>Exigimos la reactivación y ampliación de <span class="highlight">becas y ayudas para nuestro estudiantado</span>, como las del comedor, y una mejora urgente en la gestión de sustituciones del profesorado para evitar demoras de meses. Reclamamos inversión en materiales didácticos y bibliográficos, precios justos en las futuras residencias universitarias, y el reconocimiento y remuneración de todas las prácticas.</p>
-            <p>La <span class="highlight">docencia e investigación son actividades esenciales en la universidad</span>. El equipo actual debe garantizar que se desarrollarán en las mejores condiciones de calidad y de reconocimiento en los planes anuales de trabajo del personal. Nuestro personal investigador debe tener una carrera definida al mismo nivel que el resto de universidades españolas y europeas. Se deben garantizar un marco eficiente que garantice las ayudas sociales y las actividades de transferencia de la investigación que revierten en la sociedad.</p>
+            <div class="reivindicacion">
+                <h3><i class="fas fa-coins"></i> Financiación adecuada y justa</h3>
+                <p>Es necesario garantizar una financiación adecuada y justa para la UMA, que revierta la infrafinanciación histórica que arrastramos desde 2012 y asegure recursos suficientes para el desarrollo académico y la investigación. La universidad debe ser una prioridad para la Junta de Andalucía y, para el equipo que gobierna la institución, una máxima que defender continuamente.</p>
+            </div>
+            <div class="reivindicacion">
+                <h3><i class="fas fa-stairs"></i> Promoción y estabilización de la plantilla</h3>
+                <p>La promoción y estabilización de la plantilla son un derecho y deben estar desvinculadas de limitaciones presupuestarias coyunturales que afectan injustamente a nuestro futuro profesional. Exigimos planes de estabilización que permitan el desarrollo de la carrera profesional para todo el personal docente e investigador (PDI), como son personal interino, investigador, asociados y ayudantes doctores, y para el personal técnico, de gestión, administración y servicios (PTGAS). Exigimos la reactivación de los procesos de promoción para los ayudantes acreditados a titular y el personal funcionario acreditado a cátedra, con un calendario claro y transparente.</p>
+            </div>
+            <div class="reivindicacion">
+                <h3><i class="fas fa-balance-scale"></i> Equiparación salarial</h3>
+                <p>Reivindicamos una equiparación salarial entre todos los colectivos del PDI, así como el reconocimiento y pago inmediato de los complementos salariales para todos los contratos laborales. Estamos cansados de que la Junta de Andalucía nos pague en cómodos plazos y al 0% de interés. Además, se deben activar las contrataciones paralizadas y asegurar una oferta de empleo público que cubra las necesidades de renovación de la plantilla y que reduzca la temporalidad y precariedad laboral.</p>
+            </div>
+            <div class="reivindicacion">
+                <h3><i class="fas fa-graduation-cap"></i> Becas y ayudas para el estudiantado</h3>
+                <p>Exigimos la reactivación y ampliación de becas y ayudas para nuestro estudiantado, como las del comedor, y una mejora urgente en la gestión de sustituciones del profesorado para evitar demoras de meses. Reclamamos inversión en materiales didácticos y bibliográficos, precios justos en las futuras residencias universitarias, y el reconocimiento y remuneración de todas las prácticas.</p>
+            </div>
+            <div class="reivindicacion">
+                <h3><i class="fas fa-microscope"></i> Docencia e investigación</h3>
+                <p>La docencia e investigación son actividades esenciales en la universidad. El equipo actual debe garantizar que se desarrollarán en las mejores condiciones de calidad y de reconocimiento en los planes anuales de trabajo del personal. Nuestro personal investigador debe tener una carrera definida al mismo nivel que el resto de universidades españolas y europeas. Se deben garantizar un marco eficiente que garantice las ayudas sociales y las actividades de transferencia de la investigación que revierten en la sociedad.</p>
+            </div>
             <p>Consideramos necesaria la asunción de responsabilidad por parte del equipo rectoral, si no se revierte el incumplimiento del programa electoral que se viene produciendo de forma sistemática en materia de personal.</p>
             <p>No queremos trabajar en condiciones precarias, queremos trabajo digno para transferir a la sociedad el conocimiento que generamos y garantizar una educación pública, accesible y de calidad.</p>
         </section>
         <section>
-            <h2>Contacto</h2>
+            <h2><i class="fas fa-envelope"></i> Contacto</h2>
             <p>Si deseas ponerte en contacto con nosotros, puedes escribirnos a nuestro correo electrónico:</p>
             <p><a href="mailto:umaxlapublica@gmail.com">umaxlapublica@gmail.com</a></p>
         </section>
