@@ -103,6 +103,10 @@
             font-weight: bold;
             color: #1b5e20; /* Green text */
         }
+        /* Add padding to sections to account for the fixed navigation bar */
+        section {
+            scroll-margin-top: 4rem; /* Adjust this value to match the height of the navigation bar */
+        }
         @media (max-width: 768px) {
             .colectivo {
                 flex: 1 1 calc(50% - 1rem); /* Two items per row on smaller screens */
@@ -116,15 +120,25 @@
     </style>
 </head>
 <body>
-    <header style="display: flex; align-items: center; justify-content: space-between; padding: 0 1rem;">
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; margin-top: 0;">
         <!-- Add the logo image on the left -->
         <img src="logo_blanco.png" alt="UMA x la Pública Logo" style="width: 80px; height: auto;">
         <h1 style="flex-grow: 1; text-align: center; margin: 0;">UMA X LA PÚBLICA</h1>
         <!-- Add the logo image on the right -->
         <img src="logo_blanco.png" alt="UMA x la Pública Logo" style="width: 80px; height: auto;">
     </header>
+
+    <!-- Navigation bar below the header -->
+    <nav style="background-color: #1b5e20; color: white; padding: 0.5rem 1rem; position: sticky; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: space-around; align-items: center;">
+        <a href="#quienes-somos" style="color: white; text-decoration: none; font-weight: bold;">¿Quiénes somos?</a>
+        <a href="#reivindicaciones" style="color: white; text-decoration: none; font-weight: bold;">Reivindicaciones</a>
+        <a href="Manifiesto.pdf" target="_blank" style="color: white; text-decoration: none; font-weight: bold;">Manifiesto</a>
+        <a href="Concentracion15M.pdf" target="_blank" style="color: white; text-decoration: none; font-weight: bold;">Concentración15M</a>
+        <a href="#contacto" style="color: white; text-decoration: none; font-weight: bold;">Contacto</a>
+    </nav>
+
     <main>
-        <section>
+        <section id="quienes-somos">
             <h2>¿Quiénes somos?</h2>
             <p>La Coordinadora UMA x la Pública es una aglomeración de distintos colectivos que luchan en defensa de la universidad pública. Nuestro objetivo es garantizar una educación accesible, inclusiva y de calidad para todas las personas.</p>
             <p>Colectivos que forman parte de la coordinadora:</p>
@@ -162,7 +176,7 @@
                 </div>
             </div>
         </section>
-        <section>
+        <section id="reivindicaciones">
             <h2>Nuestras reivindicaciones</h2>
             <p>La Universidad de Málaga, como el conjunto del sistema público universitario español, atraviesa una etapa crítica marcada por una injusta infrafinanciación por parte de la Junta de Andalucía y por una gestión institucional que da la espalda a su comunidad. Desde la Coordinadora UMA por la Pública, que agrupa a diversos colectivos y sindicatos, exigimos un cambio profundo en las condiciones laborales, académicas y sociales que garantice el futuro de una universidad verdaderamente pública, inclusiva y comprometida con la igualdad de oportunidades. La combinación del Plan de Ajuste Económico, la entrada sin control de universidades privadas en la ciudad y la pasividad del equipo rectoral, que incumple de forma sistemática su programa electoral en materia de personal, perpetúa la precariedad, la desigualdad y el deterioro del sistema universitario público. Es urgente revertir esta deriva: hay que garantizar una financiación justa que repare los recortes arrastrados desde 2012 y, sobre todo, exigir al equipo rectoral que cumpla su palabra, asuma responsabilidades y sitúe de una vez a las personas en el centro de su acción institucional.</p>
             <div class="reivindicacion">
@@ -188,7 +202,7 @@
             <p>Consideramos necesaria la asunción de responsabilidad por parte del equipo rectoral, si no se revierte el incumplimiento del programa electoral que se viene produciendo de forma sistemática en materia de personal.</p>
             <p>No queremos trabajar en condiciones precarias. Queremos trabajo digno para transferir a la sociedad el conocimiento que generamos y garantizar una educación pública, accesible y de calidad.</p>
         </section>
-        <section>
+        <section id="contacto">
             <h2><i class="fas fa-envelope"></i> Contacto</h2>
             <p>Si deseas ponerte en contacto con nosotros, puedes escribirnos a nuestro correo electrónico:</p>
             <p><a href="mailto:umaxlapublica@gmail.com">umaxlapublica@gmail.com</a></p>
