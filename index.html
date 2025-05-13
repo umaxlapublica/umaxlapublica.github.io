@@ -108,6 +108,13 @@
             scroll-margin-top: 4rem; /* Adjust this value to match the height of the navigation bar */
         }
         @media (max-width: 768px) {
+            nav {
+                flex-direction: column; /* Stack links vertically */
+                align-items: center; /* Center align links */
+            }
+            nav a {
+                margin: 0.5rem 0; /* Add spacing between links */
+            }
             .colectivo {
                 flex: 1 1 calc(50% - 1rem); /* Two items per row on smaller screens */
             }
