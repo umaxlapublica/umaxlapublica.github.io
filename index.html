@@ -107,16 +107,59 @@
         section {
             scroll-margin-top: 4rem; /* Adjust this value to match the height of the navigation bar */
         }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #1b5e20;
+            color: white;
+            padding: 0.5rem 1rem;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none;
+            background-color: #1b5e20;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .menu-links {
+            display: flex;
+            gap: 1rem;
+        }
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column; /* Stack links vertically */
-                align-items: center; /* Center align links */
+            .menu-toggle {
+                display: block;
             }
-            nav a {
-                margin: 0.5rem 0; /* Add spacing between links */
+            .menu-links {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                background-color: #1b5e20;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 0.5rem 0;
             }
-            .colectivo {
-                flex: 1 1 calc(50% - 1rem); /* Two items per row on smaller screens */
+            .menu-links a {
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+            .menu-links.show {
+                display: flex;
             }
         }
         @media (max-width: 480px) {
@@ -136,13 +179,16 @@
     </header>
 
     <!-- Navigation bar below the header -->
-    <nav style="background-color: #1b5e20; color: white; padding: 0.5rem 1rem; position: sticky; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: space-around; align-items: center;">
-        <a href="#quienes-somos" style="color: white; text-decoration: none; font-weight: bold;">¿Quiénes somos?</a>
-        <a href="#reivindicaciones" style="color: white; text-decoration: none; font-weight: bold;">Reivindicaciones</a>
-        <a href="Manifiesto.pdf" target="_blank" style="color: white; text-decoration: none; font-weight: bold;">Manifiesto</a>
-        <a href="#noticias" style="color: white; text-decoration: none; font-weight: bold;">Noticias</a>
-        <a href="#descargas" style="color: white; text-decoration: none; font-weight: bold;">Descargas</a>
-        <a href="#contacto" style="color: white; text-decoration: none; font-weight: bold;">Contacto</a>
+    <nav>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="menu-links">
+            <a href="#quienes-somos">¿Quiénes somos?</a>
+            <a href="#reivindicaciones">Reivindicaciones</a>
+            <a href="Manifiesto.pdf" target="_blank">Manifiesto</a>
+            <a href="#noticias">Noticias</a>
+            <a href="#descargas">Descargas</a>
+            <a href="#contacto">Contacto</a>
+        </div>
     </nav>
 
     <main>
@@ -300,5 +346,11 @@
     <footer>
         <p>© 2025 Coordinadora UMA x la Pública</p>
     </footer>
+    <script>
+        function toggleMenu() {
+            const menuLinks = document.querySelector('.menu-links');
+            menuLinks.classList.toggle('show');
+        }
+    </script>
 </body>
 </html>
