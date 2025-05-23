@@ -163,9 +163,11 @@
             }
             .novedades-container {
                 flex-direction: column; /* Stack boxes vertically */
+                gap: 1rem; /* Maintain spacing between boxes */
             }
             .novedades-container > div {
-                width: 100%; /* Full width for each box */
+                width: calc(100% - 2rem); /* Ensure boxes stay within the container */
+                margin: 0 auto; /* Center the boxes */
             }
         }
         @media (max-width: 480px) {
