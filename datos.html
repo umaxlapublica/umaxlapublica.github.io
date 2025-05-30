@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMA x la PÚBLICA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1b5e20;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            background-color: #1b5e20;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2 {
+            color: #1b5e20;
+        }
+        main {
+            padding-bottom: 5rem; /* Add padding to prevent footer overlap */
+        }
+        section {
+            margin: 2rem;
+            padding: 1rem;
+            border: 2px solid #1b5e20;
+            border-radius: 0.5rem;
+            background-color: #e8f5e9;
+        }
+        figure {
+            margin: 1rem 0;
+            text-align: center;
+        }
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #1b5e20;
+            border-radius: 0.5rem;
+        }
+        figure figcaption {
+            margin-top: 0.5rem;
+            font-style: italic;
+            color: #1b5e20;
+        }
+        footer {
+            background-color: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        a {
+            color: #2e7d32;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Barra de navegación igual que en index.html */
+        .navbar {
+            background-color: #1b5e20;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-logo img {
+            width: 50px;
+            height: auto;
+        }
+        .navbar-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            display: none;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+        .navbar-links a.active,
+        .navbar-links a:hover {
+            background-color: #388e3c;
+        }
+        @media (max-width: 900px) {
+            .navbar-links {
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #1b5e20;
+                display: none;
+            }
+            .navbar-links.show {
+                display: flex;
+            }
+            .navbar-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; margin-top: 0;">
+        <!-- Add the logo image on the left -->
+        <img src="logo_blanco.png" alt="UMA x la Pública Logo" style="width: 80px; height: auto;">
+        <h1 style="flex-grow: 1; text-align: center; margin: 0;">UMA X LA PÚBLICA</h1>
+        <!-- Add the logo image on the right -->
+        <img src="logo_blanco.png" alt="UMA x la Pública Logo" style="width: 80px; height: auto;">
+    </header>
+
+    <!-- Sustituir la barra de navegación por la de index.html -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">
+            <img src="logo_blanco.png" alt="UMA x la Pública Logo">
+        </a>
+        <button class="navbar-toggle" aria-label="Abrir menú" onclick="toggleMenu()">
+            <span class="fas fa-bars"></span>
+        </button>
+        <div class="navbar-links" id="navbarLinks">
+            <a href="index.html#quienes-somos">¿Quiénes somos?</a>
+            <a href="index.html#reivindicaciones">Reivindicaciones</a>
+            <a href="Manifiesto.pdf" target="_blank">Manifiesto</a>
+            <a href="index.html#noticias">Noticias</a>
+            <a href="index.html#acciones">Acciones</a>
+            <a href="index.html#descargas">Descargas</a>
+            <a href="index.html#contacto">Contacto</a>
+            <a href="datos.html" class="active">Datos</a>
+        </div>
+    </nav>
+    <main>
+        <section style="background-color: #e8f5e9; border: 2px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; margin: 2rem;">
+            <h2>Infrafinanciación crónica de la UMA</h2>
+            <p>Desde el año 2012, la financiación autonómica destinada a la Universidad de Málaga ha descendido de manera sistemática: del 15,2% del total del sistema universitario andaluz en 2012 al 13,8% en 2024, a pesar de que la UMA ha mantenido un porcentaje de estudiantes stable en torno al 15,1%. Esta bajada no responde a criterios objetivos de actividad ni resultados, y ha generado una infrafinanciación acumulada de 216,5 millones de euros desde 2013.</p>
+            <p>Solo en 2025, la UMA habría recibido 21,2 millones de euros adicionales si se hubiese mantenido el porcentaje de financiación de 2012. Estos datos se han extraído de los informes anuales de la Fundación CYD.</p>
+            <figure>
+                <img src="Datos/infrafinanciacion1.png" alt="Evolución de la financiación de la UMA" style="max-width: 60%; height: auto; border: 2px solid #1b5e20; border-radius: 0.5rem;">
+                <figcaption style="margin-top: 0.5rem; font-style: italic; color: #1b5e20;">Gráfico nº1. Evolución de la financiación de la UMA. Fuente: presupuestos de la Universidad de Málaga</figcaption>
+            </figure>
+            <p>Además, Andalucía es la única comunidad autónoma con una capacidad de financiación negativa y una tasa de ahorro bruta prácticamente nula, según el informe de la Fundación CYD del año 2024.</p>
+            <figure>
+                <img src="Datos/infrafinanciacion2.png" alt="Situación de financiación en Andalucía" style="max-width: 60%; height: auto; border: 2px solid #1b5e20; border-radius: 0.5rem;">
+                <figcaption style="margin-top: 0.5rem; font-style: italic; color: #1b5e20;">Gráfico nº2. Situación de financiación en Andalucía. Fuente: Fundación CYD</figcaption>
+            </figure>
+        </section>
+        <section style="background-color: #e8f5e9; border: 2px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; margin: 2rem;">
+            <h2>Estrangulamiento presupuestario y presión sobre el gasto en personal</h2>
+            <p>En 2024, la Junta de Andalucía asignó a la Universidad de Málaga un crédito de 214,5 millones de euros. Sin embargo, el gasto real en nóminas ascendió a 226 millones, generando un déficit de 11,5 millones.</p>
+            <p>De cara a 2025, y con el incremento del 2,5% en los salarios públicos, se prevé que el gasto en personal alcance los 233,7 millones de euros, frente a un crédito inicial de solo 221,6 millones, lo que supone un nuevo déficit estimado de 12,1 millones.</p>
+            <p>Esta situación se ve agravada por el envejecimiento de la plantilla: la mediana de edad del profesorado se sitúa en los 53 años y se prevén más de 250 jubilaciones entre 2025 y 2030. Sin una tasa de reposición adecuada, resulta inviable garantizar el relevo generacional necesario para sostener la calidad académica.</p>
+            <figure>
+                <img src="Datos/edad1.png" alt="Distribución de la edad del PDI" style="max-width: 60%; height: auto; border: 2px solid #1b5e20; border-radius: 0.5rem;">
+                <figcaption style="margin-top: 0.5rem; font-style: italic; color: #1b5e20;">Gráfico nº3. Distribución de la edad del PDI. Fuente: equipo de gobierno de la Universidad de Málaga</figcaption>
+            </figure>
+            <figure>
+                <img src="Datos/edad2.png" alt="Evolución de la edad del PDI" style="max-width: 60%; height: auto; border: 2px solid #1b5e20; border-radius: 0.5rem;">
+                <figcaption style="margin-top: 0.5rem; font-style: italic; color: #1b5e20;">Gráfico nº4. Evolución de la edad del PDI. Fuente: equipo de gobierno de la Universidad de Málaga</figcaption>
+            </figure>
+        </section>
+        <section style="background-color: #e8f5e9; border: 2px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; margin: 2rem;">
+            <h2>Plan de Ajuste: recortes estructurales y medidas de emergencia</h2>
+            <p>Para poder hacer frente mínimamente a sus obligaciones básicas, la Universidad de Málaga se ha visto forzada a aceptar un préstamo de 48,5 millones de euros a la Junta de Andalucía, con un plan de amortización a 21 años y al 1% de interés. Esta operación ha venido acompañada de un Plan de Ajuste drástico, cuyas medidas afectan gravemente al normal funcionamiento académico e investigador de la institución.</p>
+            <p>Entre las principales restricciones impuestas destacan:</p>
+            <ul>
+                <li>Tasas de reposición extremadamente limitadas: 15% para el Personal Docente e Investigador (PDI) en 2025 y 2026, y solo un 20% en 2027.</li>
+                <li>Recorte de contrataciones en el Personal Técnico, de Gestión y de Administración y Servicios (PTGAS), limitado al 30% de reposición.</li>
+                <li>Aumento de la carga docente por profesor, supresión de reducciones por edad y drástica limitación de nuevas plazas: en 2025/26 solo se convocarán 7 plazas y se calcula que habrá aproximadamente 50 jubilaciones.</li>
+                <li>Eliminación de contrataciones por bajas temporales y restricciones al reconocimiento de tareas de investigación y gestión.</li>
+            </ul>
+            <p>Estas medidas son claramente insostenibles y ponen en riesgo tanto la calidad como la continuidad de las funciones esenciales de la universidad. A ello se suma que la Junta de Andalucía en el año 2020 tomó 36 millones de euros del remanente de la Universidad de Málaga para los Fondos COVID. Este superávit que tenía la institución estaba destinado a obras ya licitadas. Por lo tanto, la Junta se ha quedado con fondos de la UMA que luego incorpora en formato de préstamo con intereses.</p>
+            <p>Esta actuación compromete gravemente la capacidad de inversión y desarrollo estratégico de la universidad.</p>
+        </section>
+        <section style="background-color: #e8f5e9; border: 2px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; margin: 2rem;">
+            <h2>Impacto de los recortes en el estudiantado, la docencia, la investigación y la transferencia</h2>
+            <p>Las medidas de ajuste impuestas a la Universidad de Málaga no solo afectan a su estructura interna, sino que tienen un impacto directo en la calidad del servicio que presta a su estudiantado y a la sociedad. La reducción de recursos compromete la planificación docente, impide la cobertura ágil de bajas, limita la creación de nuevas plazas y dificulta la oferta de prácticas remuneradas, la dotación de los laboratorios, residencias asequibles y becas suficientes, poniendo en riesgo la igualdad de oportunidades.</p>
+            <p>Al mismo tiempo, se ven mermadas la estabilidad, la proyección profesional y la internacionalización del personal docente e investigador, dificultando el desarrollo de una carrera académica digna y sostenible. Esto repercute negativamente en la calidad de la enseñanza, la generación de conocimiento y la capacidad de transferencia hacia el entorno social y productivo.</p>
+            <p>Sin una inversión adecuada, la universidad no podrá seguir cumpliendo su misión como espacio de formación, investigación crítica y transformación social.</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 Coordinadora UMA x la Pública</p>
+    </footer>
+    <script>
+    // Script para el menú responsive igual que en index.html
+    function toggleMenu() {
+        var links = document.getElementById('navbarLinks');
+        links.classList.toggle('show');
+    }
+    // Opcional: cerrar menú al hacer click en un enlace (si está en index.html)
+    var navbarLinks = document.getElementById('navbarLinks');
+    if (navbarLinks) {
+        var links = navbarLinks.getElementsByTagName('a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener('click', function() {
+                if (window.innerWidth <= 900) {
+                    navbarLinks.classList.remove('show');
+                }
+            });
+        }
+    }
+    </script>
+</body>
+</html>
