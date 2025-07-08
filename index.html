@@ -198,6 +198,7 @@
             <a href="#acciones">Acciones</a>
             <a href="#datos">Datos</a>
             <a href="#descargas">Descargas</a>
+            <a href="#participa">Participa</a>
             <a href="#contacto">Contacto</a>
         </div>
     </nav>
@@ -402,6 +403,30 @@
             <h2><i class="fas fa-download"></i> Descargas</h2>
             <p>Descarga el cartel de la concentración del 15M: <a href="CartelConcentracion15M.pdf" target="_blank" style="color: #2e7d32; font-weight: bold;">Cartel Concentración 15M</a></p>
         </section>
+        <!-- NUEVA SECCIÓN PARTICIPA -->
+        <section id="participa">
+            <h2><i class="fas fa-hands-helping"></i> Participa</h2>
+            <p>¿Quieres colaborar, hacer sugerencias o ponerte en contacto con la coordinadora? Rellena el siguiente formulario:</p>
+            <form action="https://formsubmit.co/umaxlapublica@gmail.com" method="POST" style="background: #e8f5e9; border: 2px solid #1b5e20; border-radius: 0.5rem; padding: 1.5rem; max-width: 500px; margin: 0 auto;">
+                <!-- Asunto personalizado -->
+                <input type="hidden" name="_subject" value="Participa - Nueva sugerencia o contacto">
+                <!-- Redirección tras enviar (opcional, puedes personalizar el mensaje) -->
+                <input type="hidden" name="_next" value="https://umaxlapublica.github.io/gracias.html">
+                <div style="margin-bottom: 1rem;">
+                    <label for="nombre" style="display:block; color:#1b5e20; font-weight:bold;">Nombre:</label>
+                    <input type="text" id="nombre" name="Nombre" required style="width:100%; padding:0.5rem; border-radius:0.3rem; border:1px solid #1b5e20;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label for="email" style="display:block; color:#1b5e20; font-weight:bold;">Email:</label>
+                    <input type="email" id="email" name="Email" required style="width:100%; padding:0.5rem; border-radius:0.3rem; border:1px solid #1b5e20;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label for="mensaje" style="display:block; color:#1b5e20; font-weight:bold;">Sugerencias o comentarios:</label>
+                    <textarea id="mensaje" name="Mensaje" rows="4" required style="width:100%; padding:0.5rem; border-radius:0.3rem; border:1px solid #1b5e20;"></textarea>
+                </div>
+                <button type="submit" style="background:#1b5e20; color:white; border:none; border-radius:0.3rem; padding:0.7rem 1.5rem; font-weight:bold; cursor:pointer;">Enviar</button>
+            </form>
+        </section>
         <section id="contacto">
             <h2><i class="fas fa-envelope"></i> Contacto</h2>
             <p>Si deseas ponerte en contacto con nosotros, puedes escribirnos a nuestro correo electrónico:</p>
@@ -418,6 +443,7 @@
             const menuLinks = document.querySelector('.menu-links');
             menuLinks.classList.toggle('show');
         }
+        // Elimina el script de confirmación del formulario participa
     </script>
 </body>
 </html>
