@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argumentos - UMA x la PÚBLICA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1b5e20;
+            color: white !important;
+            padding: 1rem;
+            text-align: center;
+        }
+        h1 {
+            color: white !important;
+        }
+        main {
+            padding: 2rem;
+            padding-bottom: 6rem;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        h1, h2 {
+            color: #1b5e20;
+        }
+        footer {
+            background-color: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 4rem;
+        }
+        a {
+            color: #2e7d32;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .argumento-box {
+            border: 2px solid #1b5e20;
+            background-color: #e8f5e9;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        .argumento-box h3 {
+            margin-top: 0;
+            color: #1b5e20;
+        }
+        .argumento-box ul {
+            margin-bottom: 0;
+        }
+        .argumento-box li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #1b5e20;
+            color: white;
+            padding: 0.5rem 1rem;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none;
+            background-color: #1b5e20;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .menu-links {
+            display: flex;
+            gap: 1rem;
+        }
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .menu-links {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                background-color: #1b5e20;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 0.5rem 0;
+            }
+            .menu-links a {
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+            .menu-links.show {
+                display: flex;
+            }
+        }
+        section {
+            scroll-margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; margin-top: 0;">
+        <img src="logo_blanco.png" alt="UMA x la Pública Logo" style="width: 80px; height: auto;">
+        <h1 style="flex-grow: 1; text-align: center; margin: 0;">UMA X LA PÚBLICA</h1>
+        <img src="logo_blanco.png" alt="UMA x la Pública Logo" style="width: 80px; height: auto;">
+    </header>
+
+    <nav>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="menu-links">
+            <a href="index.html#quienes-somos">¿Quiénes somos?</a>
+            <a href="index.html#reivindicaciones">Reivindicaciones</a>
+            <a href="index.html#documentos">Documentos</a>
+            <a href="index.html#noticias">Noticias</a>
+            <a href="index.html#acciones">Acciones</a>
+            <a href="datos.html">Datos</a>
+            <a href="argumentos.html">Argumentos</a>
+            <a href="index.html#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <main>
+        <h2>Situación Universidad Pública (UMA)</h2>
+
+        <section id="asfixia-financiera">
+            <div class="argumento-box">
+                <h3>1. La Asfixia Financiera de la Universidad de Málaga (UMA)</h3>
+                <ul>
+                    <li><strong>Ranking de infrafinanciación:</strong> La UMA es la cuarta peor financiada de España y la segunda peor de Andalucía.</li>
+                    <li><strong>El coste de la brecha:</strong> Si se financiara como la media andaluza, recibiría 24M€ más al año. Si fuera como la mejor financiada, la cifra subiría a 59M€ anuales.</li>
+                    <li><strong>Falta de personal:</strong> La tasa de reposición es 15% (de cada 20 profesores que se jubilan se contratan 3).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="desmantelamiento">
+            <div class="argumento-box">
+                <h3>2. El Desmantelamiento del Sistema Público vs. Auge Privado</h3>
+                <ul>
+                    <li><strong>Estancamiento público:</strong> En los últimos 25 años se han abierto 27 centros privados y ninguno público. Solo entre 2015 y 2025 se abrieron 16 privadas (3 en Andalucía).</li>
+                    <li><strong>Pérdida de plazas:</strong> En la última década, el número de universitarios subió un 21%, pero el sistema público ofrece 1.000 plazas menos; todo el crecimiento ha sido absorbido por la privada.</li>
+                    <li><strong>El "Sorpaso" inminente:</strong> Se estima que en 2026 se produzca el sorpaso total de las privadas.</li>
+                    <li><strong>Comparativa europea:</strong> En España, los matriculados en privadas suponen el 31,5% (2022), frente a Francia (24%), Italia (19%), Alemania (16%) o Dinamarca (0,2%).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="excelencia-universidades">
+            <div class="argumento-box">
+                <h3>3. Excelencia de las Universidades Públicas</h3>
+                <ul>
+                    <li><strong>Liderazgo en rankings mundiales:</strong> La universidad pública sostiene el prestigio internacional de España; de las 36 instituciones españolas en el Top 1000 de Shanghai, 35 son públicas y solo una es privada.</li>
+                    <li><strong>Dominio en investigación doctoral:</strong> El sistema público es el motor de la formación de especialistas, concentrando el 93% de las tesis doctorales defendidas en el último año.</li>
+                    <li><strong>Primacía en producción científica:</strong> La generación de nuevo conocimiento es casi exclusiva de la pública, responsable del 95% de las publicaciones científicas en España.</li>
+                    <li><strong>Mayor impacto investigador:</strong> Los académicos de universidades públicas demuestran una eficiencia superior, publicando de media cuatro veces más artículos que los de la universidad privada.</li>
+                    <li><strong>Excelencia y acreditación:</strong> El rigor del personal público está avalado por la ANECA, ya que 9 de cada 10 sexenios de investigación concedidos corresponden a investigadores de la pública.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="barrera-economica">
+            <div class="argumento-box">
+                <h3>4. La Barrera Económica y el Endeudamiento de las Familias</h3>
+                <ul>
+                    <li><strong>Brecha de precios:</strong> La matrícula en la UMA cuesta 757€, mientras que en la privada oscila entre 6.000€ y 21.000€ (hasta 28 veces más caro).</li>
+                    <li><strong>Bancarización de la educación:</strong> 1 de cada 7 préstamos ya se destinan a pagar matrículas privadas (ASUFIN).</li>
+                    <li><strong>Deuda creciente:</strong> Los préstamos al estudio han subido un 60% en solo cinco años.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="negocio-masteres">
+            <div class="argumento-box">
+                <h3>5. El Negocio de los Másteres y Grados Específicos</h3>
+                <ul>
+                    <li><strong>El negocio del Máster:</strong> En 10 años, las privadas han multiplicado por 10 sus alumnos de máster (de 7.668 a 73.744).</li>
+                    <li><strong>Sorpaso en postgrado:</strong> En 2023 ya hubo más alumnos de máster en la privada que en la pública. En 2025 la brecha creció: 165.688 (privada) vs 147.501 (pública).</li>
+                    <li><strong>Especialización:</strong> En carreras como Odontología, ya hay más alumnos en la privada que en la pública.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="universidades-activos">
+            <div class="argumento-box">
+                <h3>6. Universidades como Activos Financieros (El caso UAX)</h3>
+                <ul>
+                    <li><strong>Rentabilidad disparada:</strong> La rentabilidad media de las universidades privadas es del 9,4%, con una facturación que subió un 68% (de 2.200M€ en 2017 a 3.700M€ en 2023).</li>
+                    <li><strong>Operaciones especulativas:</strong> En 2025, el fondo CVC vendió su parte en la UAX por 2.000M€, el doble de lo que pagó en 2019.</li>
+                    <li><strong>Márgenes de beneficio:</strong> La Universidad Alfonso X el Sabio (UAX) maneja un margen de beneficio del 55%.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 UMA x la PÚBLICA. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menuLinks = document.querySelector('.menu-links');
+            menuLinks.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
