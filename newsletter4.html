@@ -107,6 +107,70 @@
         .close:hover {
             color: #1b5e20;
         }
+        /* Responsive Design para móviles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+                margin: 1rem auto;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+                margin-top: 1.5rem;
+            }
+            .section-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            .section-content img {
+                max-width: 100%;
+                width: 100%;
+                max-height: 300px;
+                object-fit: cover;
+            }
+            .section-content div {
+                width: 100%;
+            }
+            .section-content p {
+                margin: 0.8rem 0;
+                line-height: 1.6;
+                font-size: 1rem;
+            }
+            body {
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem 0.75rem;
+                margin: 0.5rem auto;
+                border-radius: 0.4rem;
+            }
+            h1 {
+                font-size: 1.3rem;
+                margin-bottom: 0.3rem;
+            }
+            h2 {
+                font-size: 1.1rem;
+                margin-top: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+            .section-content img {
+                max-height: 250px;
+            }
+            .section-content p {
+                font-size: 0.95rem;
+            }
+            .footer {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 <body>
