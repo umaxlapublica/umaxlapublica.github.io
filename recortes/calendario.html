@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Recortes Septiembre — UMA x la Pública</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #222;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .day-box {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-box.locked {
+            background: linear-gradient(135deg, #757575 0%, #616161 100%);
+            color: #999;
+            cursor: not-allowed;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .day-box.locked::before {
+            content: '🔒';
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.6;
+        }
+
+        .day-box.unlocked {
+            background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .day-box.unlocked:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .day-box.active {
+            background: linear-gradient(135deg, #ffeb3b 0%, #fbc02d 100%);
+            color: #333;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+
+        .day-number {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .day-icon {
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            min-height: 300px;
+        }
+
+        .content-section h2 {
+            color: #1b5e20;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .content-section p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section .empty {
+            color: #999;
+            text-align: center;
+            padding: 3rem 1rem;
+            font-style: italic;
+        }
+
+        .intro-message {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-message h2 {
+            color: #1b5e20;
+            margin-bottom: 1rem;
+        }
+
+        .intro-message p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .calendar-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .day-icon {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📅 Calendario de Recortes</h1>
+        <p>Septiembre 2024 • UMA x la Pública</p>
+    </header>
+
+    <div class="container">
+        <div class="intro-message" id="introMessage">
+            <h2>Haz clic en un día para abrir el recorte</h2>
+            <p>Como un calendario de adviento, descubre los recortes en la UMA día a día. Haz clic en cualquier día para ver sus detalles.</p>
+        </div>
+
+        <div class="calendar-grid" id="calendarGrid"></div>
+
+        <div class="content-section" id="contentSection">
+            <div class="empty">Selecciona un día para ver el recorte</div>
+        </div>
+    </div>
+
+    <script>
+        const data = [
+            { day: 1, icon: "🏠", title: "Recorte a estudiantes refugiados y becas de emergencia", content: "Desahucio habitacional y retirada de ayudas." },
+            { day: 2, icon: "🩺", title: "Recorte en salud", content: "Suspensión de campañas de prevención de cáncer (mama/cérvix) y revisiones." },
+            { day: 3, icon: "👥", title: "Recorte en espacio", content: "Aulas masificadas (hasta 135 alumnos) y falta de puestos de estudio." },
+            { day: 4, icon: "🚨", title: "Recorte en seguridad", content: "Reducción de vigilancia, eliminación del turno de día y aumento de robos." },
+            { day: 5, icon: "♿", title: "Recorte en inclusión", content: "Tijeretazo de más del 80% en las reducciones docentes (RAD) por discapacidad." },
+            { day: 6, icon: "🌡️", title: "Recortes en mantenimiento", content: "Fallos y apagones de climatización en las facultades durante todo el año." },
+            { day: 7, icon: "📚", title: "Recorte de RAD al PDI", content: "Eliminación de reducciones por investigación/tesis y sobrecarga lectiva a 240h." },
+            { day: 8, icon: "🧪", title: "Recortes en laboratorios", content: "Presupuestos a la mitad en material de prácticas y fin de salidas de campo." },
+            { day: 9, icon: "🎓", title: "Recorte en promociones", content: "Bloqueo a la Cátedra de más de 100 docentes acreditados." },
+            { day: 10, icon: "🧹", title: "Recorte en limpieza", content: "Falta de personal, zonas insalubres e incumplimiento de pliegos por las contratas." },
+            { day: 11, icon: "🌧️", title: "Recorte en infraestructuras", content: "Inundaciones en edificios nuevos (Psicología), goteras y obras congeladas." },
+            { day: 12, icon: "🛑", title: "Recorte en estabilización joven", content: "Trabas para la promoción de PDI Ayudante Doctor a PPL." },
+            { day: 13, icon: "🗄️", title: "Recorte en PTGAS", content: "Bajas y jubilaciones no cubiertas; asunción de funciones superiores gratis." },
+            { day: 14, icon: "💸", title: "Recorte salarial en investigación", content: "Congelación salarial predoctoral y retrasos de más de 1 año." },
+            { day: 15, icon: "📖", title: "Recorte en bibliotecas", content: "Tijeretazo del 80% en compra de libros/revistas y cierre de salas 24h." },
+            { day: 16, icon: "💶", title: "Recorte en el Plan Propio", content: "Impago de complementos autonómicos y falta de fondos para congresos." },
+            { day: 17, icon: "✊", title: "Orgullo Universitario", content: "A pesar de los recortes, la comunidad sostiene la UMA. ¡Todos a la concentración!" }
+        ];
+
+        let currentDay = 1;
+
+        function initCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            data.forEach((item) => {
+                const box = document.createElement('div');
+                box.className = 'day-box unlocked';
+                if (item.day === currentDay) {
+                    box.classList.add('active');
+                }
+                box.innerHTML = `
+                    <div class="day-number">Sep ${String(item.day).padStart(2, '0')}</div>
+                    <div class="day-icon">${item.icon}</div>
+                `;
+                box.addEventListener('click', () => selectDay(item.day, box));
+                grid.appendChild(box);
+            });
+            showContent(currentDay);
+        }
+
+        function selectDay(dayNumber, element) {
+            currentDay = dayNumber;
+            updateCalendar();
+            showContent(dayNumber);
+        }
+
+        function updateCalendar() {
+            const boxes = document.querySelectorAll('.day-box');
+            boxes.forEach((box, index) => {
+                const dayNum = index + 1;
+                if (dayNum <= currentDay) {
+                    box.classList.remove('locked');
+                    box.classList.add('unlocked');
+                    if (dayNum === currentDay) {
+                        box.classList.add('active');
+                    } else {
+                        box.classList.remove('active');
+                    }
+                } else {
+                    box.classList.add('locked');
+                    box.classList.remove('unlocked', 'active');
+                }
+            });
+        }
+
+        function showContent(dayNumber) {
+            const item = data[dayNumber - 1];
+            const section = document.getElementById('contentSection');
+            section.innerHTML = `
+                <h2>${item.icon} Día ${dayNumber} de Septiembre</h2>
+                <h3 style="color: #2e7d32; margin-bottom: 1rem; font-size: 1.3rem;">${item.title}</h3>
+                <p>${item.content}</p>
+            `;
+        }
+
+        // Inicializar al cargar
+        initCalendar();
+    </script>
+</body>
+</html>
