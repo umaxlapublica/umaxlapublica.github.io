@@ -96,6 +96,7 @@
             color: #999;
             cursor: not-allowed;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
 
         .day-box.locked::before {
@@ -103,6 +104,26 @@
             position: absolute;
             font-size: 1.5rem;
             opacity: 0.6;
+            z-index: 2;
+        }
+
+        .day-box.locked::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(50, 50, 50, 0.8);
+            border-radius: 12px;
+            z-index: 1;
+        }
+
+        .day-box.locked .day-number,
+        .day-box.locked .day-icon {
+            opacity: 0.2;
+            z-index: 0;
+            position: relative;
         }
 
         .day-box.unlocked {
@@ -144,13 +165,19 @@
         .content-section h2 {
             color: #1b5e20;
             margin-bottom: 1rem;
-            font-size: 2rem;
+            font-size: 2.8rem;
+        }
+
+        .content-section h3 {
+            color: #2e7d32;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
         }
 
         .content-section p {
             color: #555;
-            line-height: 1.8;
-            font-size: 1.1rem;
+            line-height: 1.9;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
@@ -208,6 +235,19 @@
 
             .content-section {
                 padding: 1.5rem;
+                min-height: 400px;
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+
+            .content-section h3 {
+                font-size: 1.4rem;
+            }
+
+            .content-section p {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -215,13 +255,12 @@
 <body>
     <header>
         <h1>📅 Calendario de Recortes</h1>
-        <p>Septiembre 2024 • UMA x la Pública</p>
+        <p>Septiembre 2026 • UMA x la Pública</p>
     </header>
 
     <div class="container">
         <div class="intro-message" id="introMessage">
-            <h2>Haz clic en un día para abrir el recorte</h2>
-            <p>Como un calendario de adviento, descubre los recortes en la UMA día a día. Haz clic en cualquier día para ver sus detalles.</p>
+            <p>Durante 17 días, descubre todos los recortes que sufre nuestra universidad. Aulas masificadas, investigación paralizada, personal sin cubrir, infraestructuras rotas... Desde el 1 al 17 de septiembre, cada día un nuevo recorte. <strong>¡El 17 de septiembre nos movilizamos todos en el campus! La comunidad universitaria entera se levanta por una UMA digna.</strong></p>
         </div>
 
         <div class="calendar-wrapper">
@@ -323,7 +362,7 @@
             const section = document.getElementById('contentSection');
             section.innerHTML = `
                 <h2>${item.icon} Día ${dayNumber} de Septiembre</h2>
-                <h3 style="color: #2e7d32; margin-bottom: 1rem; font-size: 1.3rem;">${item.title}</h3>
+                <h3>${item.title}</h3>
                 <p>${item.content}</p>
             `;
         }
