@@ -64,6 +64,14 @@
             font-size: 0.95rem;
         }
 
+        .weekday-header.full {
+            display: block;
+        }
+
+        .weekday-header.abbreviated {
+            display: none;
+        }
+
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -217,8 +225,13 @@
                 padding: 1rem;
             }
 
-            .weekday-header {
-                font-size: 0.8rem;
+            .weekday-header.full {
+                display: none;
+            }
+
+            .weekday-header.abbreviated {
+                display: block;
+                font-size: 0.9rem;
             }
 
             .calendar-grid {
@@ -265,13 +278,20 @@
 
         <div class="calendar-wrapper">
             <div class="weekdays">
-                <div class="weekday-header">Lunes</div>
-                <div class="weekday-header">Martes</div>
-                <div class="weekday-header">Miércoles</div>
-                <div class="weekday-header">Jueves</div>
-                <div class="weekday-header">Viernes</div>
-                <div class="weekday-header">Sábado</div>
-                <div class="weekday-header">Domingo</div>
+                <div class="weekday-header full">Lunes</div>
+                <div class="weekday-header full">Martes</div>
+                <div class="weekday-header full">Miércoles</div>
+                <div class="weekday-header full">Jueves</div>
+                <div class="weekday-header full">Viernes</div>
+                <div class="weekday-header full">Sábado</div>
+                <div class="weekday-header full">Domingo</div>
+                <div class="weekday-header abbreviated">L</div>
+                <div class="weekday-header abbreviated">M</div>
+                <div class="weekday-header abbreviated">X</div>
+                <div class="weekday-header abbreviated">J</div>
+                <div class="weekday-header abbreviated">V</div>
+                <div class="weekday-header abbreviated">S</div>
+                <div class="weekday-header abbreviated">D</div>
             </div>
             <div class="calendar-grid" id="calendarGrid"></div>
         </div>
