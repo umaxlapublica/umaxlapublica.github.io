@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carteles de Recortes — UMA x la Pública</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            padding: 2rem 1rem;
+            color: #1b5e20;
+        }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls button {
+            background: #1b5e20;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            margin: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .controls button:hover {
+            background: #2e7d32;
+        }
+
+        .controls select {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            margin: 0.5rem;
+            border-radius: 5px;
+            border: 2px solid #1b5e20;
+        }
+
+        .cartel-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+        }
+
+        .cartel {
+            width: 100%;
+            max-width: 1000px;
+            aspect-ratio: 11.7 / 8.3;
+            background: white;
+            border-radius: 8px;
+            padding: 2rem 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            color: #1b5e20;
+            position: relative;
+            border: 4px solid #1b5e20;
+        }
+
+        .cartel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .cartel-logo {
+            flex-shrink: 0;
+        }
+
+        .cartel-logo img {
+            height: 110px;
+            width: auto;
+        }
+
+        .cartel-header-text {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cartel-title-main {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 0.9;
+            color: #1b5e20;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cartel-divider {
+            width: 100%;
+            height: 4px;
+            background: #1b5e20;
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+            border-radius: 3px;
+        }
+
+        .cartel-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 1rem 0;
+        }
+
+        .cartel-recorte-title {
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: #1b5e20;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cartel-recorte-title .cartel-day-number {
+            color: #2e7d32;
+        }
+
+        .cartel-footer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .cartel-icon {
+            font-size: 6rem;
+            line-height: 1;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .nav-buttons button {
+            background: #1b5e20;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .nav-buttons button:hover {
+            background: #2e7d32;
+        }
+
+        .nav-buttons button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .counter {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #1b5e20;
+            background: #e8f5e9;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .cartel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .cartel-grid .cartel {
+            max-width: 100%;
+            aspect-ratio: auto;
+            min-height: 350px;
+            padding: 1.5rem;
+        }
+
+        .cartel-grid .cartel-header {
+            margin-bottom: 1rem;
+        }
+
+        .cartel-grid .cartel-logo img {
+            height: 65px;
+        }
+
+        .cartel-grid .cartel-title-main {
+            font-size: 2rem;
+        }
+
+        .cartel-grid .cartel-recorte-title {
+            font-size: 2.2rem;
+        }
+
+        .cartel-grid .cartel-icon {
+            font-size: 3.5rem;
+        }
+
+        .cartel-grid .cartel-divider {
+            margin-bottom: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .toggle-view {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .controls {
+                display: none;
+            }
+
+            .cartel {
+                page-break-inside: avoid;
+                margin-bottom: 1rem;
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .cartel-container {
+                page-break-after: always;
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cartel {
+                padding: 1.5rem 2rem;
+            }
+
+            .cartel-header {
+                gap: 0.5rem;
+            }
+
+            .cartel-logo img {
+                height: 70px;
+            }
+
+            .cartel-title-main {
+                font-size: 2.5rem;
+            }
+
+            .cartel-recorte-title {
+                font-size: 3rem;
+            }
+
+            .cartel-icon {
+                font-size: 4rem;
+            }
+        }}
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="toggle-view">
+            <button onclick="toggleView()">📋 Cambiar vista (Individual / Todos)</button>
+        </div>
+        
+        <div id="singleView" style="display: block;">
+            <label for="cartelSelect">Selecciona un cartel:</label>
+            <select id="cartelSelect" onchange="showCartel(this.value)">
+                <option value="">-- Elige un día --</option>
+            </select>
+            <div class="nav-buttons">
+                <button onclick="previousCartel()" id="prevBtn" disabled>← Anterior</button>
+                <span class="counter"><span id="current">1</span> / 17</span>
+                <button onclick="nextCartel()" id="nextBtn">Siguiente →</button>
+            </div>
+            <button onclick="window.print()" style="margin-top: 1rem; background: #f57c00;">🖨️ Imprimir cartel</button>
+        </div>
+
+        <div id="gridView" style="display: none;">
+            <button onclick="window.print()" style="background: #f57c00;">🖨️ Imprimir todos los carteles</button>
+            <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">Vista de todos los 17 carteles.</p>
+        </div>
+    </div>
+
+    <div id="singleContainer" class="cartel-container">
+        <div id="cartelContent" class="cartel">
+            <div class="cartel-header">
+                <div class="cartel-logo">
+                    <img src="../logo_umaxlapublica.png" alt="UMA x la Pública">
+                </div>
+                <div class="cartel-header-text">
+                    <div class="cartel-title-main">Recortes UMA</div>
+                </div>
+                <div class="cartel-logo">
+                    <img src="../logo_umaxlapublica.png" alt="UMA x la Pública">
+                </div>
+            </div>
+
+            <div class="cartel-divider"></div>
+
+            <div class="cartel-content">
+                <div class="cartel-recorte-title"><span class="cartel-day-number" id="dayNumber">#1:</span> <span id="cartelTitle">Recorte a estudiantes refugiados y becas de emergencia</span></div>
+            </div>
+
+            <div class="cartel-footer">
+                <div class="cartel-icon" id="cartelIcon">🏠</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gridContainer" class="cartel-grid" style="display: none;"></div>
+
+    <script>
+        const data = [
+            { day: 1, icon: "🏠", title: "Recorte drástico a estudiantes refugiados y becas de emergencia" },
+            { day: 2, icon: "🩺", title: "Recorte en las campañas sanitarias y revisiones médicas" },
+            { day: 3, icon: "👥", title: "Recorte en la capacidad de las aulas y masificación" },
+            { day: 4, icon: "🚨", title: "Recorte masivo en el servicio de seguridad del campus" },
+            { day: 5, icon: "♿", title: "Recorte de más del 80% en las RAD por discapacidad" },
+            { day: 6, icon: "🌡️", title: "Recortes en climatización y mantenimiento de edificios" },
+            { day: 7, icon: "📚", title: "Recorte de la RAD al PDI y sobrecarga lectiva" },
+            { day: 8, icon: "🧪", title: "Recortes en laboratorios, material de prácticas y salidas" },
+            { day: 9, icon: "🎓", title: "Recorte y bloqueo de las promociones a Catedrático/a" },
+            { day: 10, icon: "🧹", title: "Recorte en la plantilla de limpieza e incumplimiento de pliegos" },
+            { day: 11, icon: "🌧️", title: "Recorte en infraestructuras: goteras y obras paralizadas" },
+            { day: 12, icon: "🛑", title: "Recorte en la estabilización del PDI joven (PAD a PPL)" },
+            { day: 13, icon: "🗄️", title: "Recorte de personal técnico (PTGAS) y no cobertura de bajas" },
+            { day: 14, icon: "💸", title: "Recorte salarial e incumplimientos con el personal investigador" },
+            { day: 15, icon: "📖", title: "Recorte del 80% en los fondos bibliográficos" },
+            { day: 16, icon: "💶", title: "Recortes en el Plan Propio e impago de complementos" },
+            { day: 17, icon: "✊", title: "¡LA PLANTILLA DICE BASTA!" }
+        ];
+
+        let currentCartelIndex = 0;
+        let viewMode = 'single';
+
+        function initSelectOptions() {
+            const select = document.getElementById('cartelSelect');
+            data.forEach((item, idx) => {
+                const option = document.createElement('option');
+                option.value = idx;
+                option.textContent = `Día ${item.day}: ${item.title.substring(0, 35)}...`;
+                select.appendChild(option);
+            });
+        }
+
+        function showCartel(index) {
+            if (index === '') return;
+            index = parseInt(index);
+            currentCartelIndex = index;
+            updateCartelDisplay();
+            updateNavButtons();
+        }
+
+        function updateCartelDisplay() {
+            const item = data[currentCartelIndex];
+            document.getElementById('dayNumber').textContent = `#${item.day}:`;
+            document.getElementById('cartelTitle').textContent = item.title;
+            document.getElementById('cartelIcon').textContent = item.icon;
+            document.getElementById('current').textContent = currentCartelIndex + 1;
+            document.getElementById('cartelSelect').value = currentCartelIndex;
+        }
+
+        function nextCartel() {
+            if (currentCartelIndex < data.length - 1) {
+                currentCartelIndex++;
+                updateCartelDisplay();
+                updateNavButtons();
+            }
+        }
+
+        function previousCartel() {
+            if (currentCartelIndex > 0) {
+                currentCartelIndex--;
+                updateCartelDisplay();
+                updateNavButtons();
+            }
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentCartelIndex === 0;
+            document.getElementById('nextBtn').disabled = currentCartelIndex === data.length - 1;
+        }
+
+        function toggleView() {
+            viewMode = viewMode === 'single' ? 'grid' : 'single';
+            
+            if (viewMode === 'single') {
+                document.getElementById('singleContainer').style.display = 'flex';
+                document.getElementById('gridContainer').style.display = 'none';
+                document.getElementById('singleView').style.display = 'block';
+                document.getElementById('gridView').style.display = 'none';
+            } else {
+                document.getElementById('singleContainer').style.display = 'none';
+                document.getElementById('gridContainer').style.display = 'grid';
+                document.getElementById('singleView').style.display = 'none';
+                document.getElementById('gridView').style.display = 'block';
+                generateGridView();
+            }
+        }
+
+        function generateGridView() {
+            const gridContainer = document.getElementById('gridContainer');
+            gridContainer.innerHTML = '';
+            
+            data.forEach((item) => {
+                const cartel = document.createElement('div');
+                cartel.className = 'cartel';
+                cartel.innerHTML = `
+                    <div class="cartel-header">
+                        <div class="cartel-logo">
+                            <img src="../logo_umaxlapublica.png" alt="UMA x la Pública">
+                        </div>
+                        <div class="cartel-header-text">
+                            <div class="cartel-title-main">Recortes UMA</div>
+                        </div>
+                        <div class="cartel-logo">
+                            <img src="../logo_umaxlapublica.png" alt="UMA x la Pública">
+                        </div>
+                    </div>
+
+                    <div class="cartel-divider"></div>
+
+                    <div class="cartel-content">
+                        <div class="cartel-recorte-title"><span class="cartel-day-number">#${item.day}:</span> ${item.title}</div>
+                    </div>
+
+                    <div class="cartel-footer">
+                        <div class="cartel-icon">${item.icon}</div>
+                    </div>
+                `;
+                gridContainer.appendChild(cartel);
+            });
+        }
+
+        // Inicializar
+        initSelectOptions();
+        updateCartelDisplay();
+        updateNavButtons();
+    </script>
+</body>
+</html>
