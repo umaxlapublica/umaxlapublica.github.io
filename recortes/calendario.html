@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Recortes Septiembre — UMA x la Pública</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #222;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .calendar-wrapper {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2rem;
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .weekday-header {
+            text-align: center;
+            font-weight: bold;
+            color: #1b5e20;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .weekday-header.full {
+            display: block;
+        }
+
+        .weekday-header.abbreviated {
+            display: none;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .day-box {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-box.empty {
+            background: transparent;
+            cursor: default;
+            box-shadow: none;
+        }
+
+        .day-box.locked {
+            background: linear-gradient(135deg, #757575 0%, #616161 100%);
+            color: #999;
+            cursor: not-allowed;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .day-box.locked::before {
+            content: '🔒';
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            z-index: 2;
+        }
+
+        .day-box.locked::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(50, 50, 50, 0.8);
+            border-radius: 12px;
+            z-index: 1;
+        }
+
+        .day-box.locked .day-number,
+        .day-box.locked .day-icon {
+            opacity: 0.2;
+            z-index: 0;
+            position: relative;
+        }
+
+        .day-box.unlocked {
+            background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .day-box.unlocked:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .day-box.active {
+            background: linear-gradient(135deg, #ffeb3b 0%, #fbc02d 100%);
+            color: #333;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+
+        .day-number {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .day-icon {
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            min-height: 300px;
+        }
+
+        .content-section h2 {
+            color: #1b5e20;
+            margin-bottom: 1rem;
+            font-size: 2.8rem;
+        }
+
+        .content-section h3 {
+            color: #2e7d32;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .content-section p {
+            color: #555;
+            line-height: 1.9;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section .empty {
+            color: #999;
+            text-align: center;
+            padding: 3rem 1rem;
+            font-style: italic;
+        }
+
+        .intro-message {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-message h2 {
+            color: #1b5e20;
+            margin-bottom: 1rem;
+        }
+
+        .intro-message p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .calendar-wrapper {
+                padding: 1rem;
+            }
+
+            .weekday-header.full {
+                display: none;
+            }
+
+            .weekday-header.abbreviated {
+                display: block;
+                font-size: 0.9rem;
+            }
+
+            .calendar-grid {
+                gap: 0.5rem;
+            }
+
+            .day-icon {
+                font-size: 1.8rem;
+            }
+
+            .day-number {
+                font-size: 0.8rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+                min-height: 400px;
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+
+            .content-section h3 {
+                font-size: 1.4rem;
+            }
+
+            .content-section p {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📅 Calendario de Recortes</h1>
+        <p>Septiembre 2026 • UMA x la Pública</p>
+    </header>
+
+    <div class="container">
+        <div class="intro-message" id="introMessage">
+            <p>Durante 17 días, descubre todos los recortes que sufre nuestra universidad. Aulas masificadas, investigación paralizada, personal sin cubrir, infraestructuras rotas... Desde el 1 al 17 de septiembre, cada día un nuevo recorte. <strong>¡El 17 de septiembre nos movilizamos todos en el campus! La comunidad universitaria entera se levanta por una UMA digna.</strong></p>
+        </div>
+
+        <div class="calendar-wrapper">
+            <div class="weekdays">
+                <div class="weekday-header full">Lunes</div>
+                <div class="weekday-header full">Martes</div>
+                <div class="weekday-header full">Miércoles</div>
+                <div class="weekday-header full">Jueves</div>
+                <div class="weekday-header full">Viernes</div>
+                <div class="weekday-header full">Sábado</div>
+                <div class="weekday-header full">Domingo</div>
+                <div class="weekday-header abbreviated">L</div>
+                <div class="weekday-header abbreviated">M</div>
+                <div class="weekday-header abbreviated">X</div>
+                <div class="weekday-header abbreviated">J</div>
+                <div class="weekday-header abbreviated">V</div>
+                <div class="weekday-header abbreviated">S</div>
+                <div class="weekday-header abbreviated">D</div>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+
+        <div class="content-section" id="contentSection">
+            <div class="empty">Selecciona un día para ver el recorte</div>
+        </div>
+    </div>
+
+    <script>
+        const data = [
+            { day: 1, icon: "🏠", title: "Recorte drástico a estudiantes refugiados y becas de emergencia", content: "Retirada del alojamiento y la manutención en la Residencia Alberto Jiménez Fraud a partir del 1 de septiembre a estudiantes refugiados y beneficiarios de la beca de emergencia (víctimas de violencia de género, intrafamiliar o huérfanos)." },
+            { day: 2, icon: "🩺", title: "Recorte en las campañas sanitarias y revisiones médicas", content: "Recorte y suspensión durante los últimos dos cursos de las campañas de detección precoz de cáncer de mama y cérvix para la plantilla, así como la reducción de las revisiones médicas periódicas." },
+            { day: 3, icon: "👥", title: "Recorte en la capacidad de las aulas y masificación", content: "Aulas masificadas con grupos de entre 70 y 135 estudiantes en Derecho, ADE, Psicología o Educación, obligando a impartir clases en formato híbrido o dejando al alumnado sin asiento." },
+            { day: 4, icon: "🚨", title: "Recorte masivo en el servicio de seguridad del campus", content: "Reducción de la plantilla de vigilantes tras un ERTE y eliminación de la presencia de seguridad durante el día en Teatinos, Rectorado y Bibliotecas, lo que ha provocado un aumento de robos." },
+            { day: 5, icon: "♿", title: "Recorte de más del 80% en las RAD por discapacidad", content: "Tijeretazo drástico de entre el 50% y el 82% en la Reducción por Actividades Docentes (RAD) por discapacidad reconocida al profesorado, notificado mediante listados en la web sin resolución individualizada." },
+            { day: 6, icon: "🌡️", title: "Recortes en climatización y mantenimiento de edificios", content: "Apagones y averías continuas en los sistemas de aire acondicionado y calefacción a lo largo de todo el curso en Telecomunicaciones, Informática, Ciencias de la Salud, Derecho, Medicina y Comunicación." },
+            { day: 7, icon: "📚", title: "Recorte de la RAD al PDI y sobrecarga lectiva", content: "Eliminación o no aplicación de las Reducciones por Actividades Docentes (RAD) por investigación, tesis y gestión, obligando a impartir hasta 240 horas y asumiendo la docencia de jubilaciones y bajas no cubiertas." },
+            { day: 8, icon: "🧪", title: "Recortes en laboratorios, material de prácticas y salidas", content: "Presupuestos para material de laboratorio reducidos a la mitad en Biología, Bioquímica y Ambientales, junto a la cancelación de salidas de campo y visitas técnicas por falta de fondos para transporte." },
+            { day: 9, icon: "🎓", title: "Recorte y bloqueo de las promociones a Catedrático/a", content: "Más de 100 profesores acreditados a Catedráticos (CU) paralizados durante más de 2 años y medio debido a que la UMA remite sus plazas a la Junta de Andalucía clasificándolas como \"no prioritarias\"." },
+            { day: 10, icon: "🧹", title: "Recorte en la plantilla de limpieza e incumplimiento de pliegos", content: "Reducción significativa de la plantilla de limpieza sin cubrir bajas ni jubilaciones e incumplimiento de los pliegos por las empresas adjudicatarias, dejando aseos y zonas comunes sin limpiar durante días en varios centros." },
+            { day: 11, icon: "🌧️", title: "Recorte en infraestructuras: goteras y obras paralizadas", content: "Goteras estructurales e inundaciones sin reparar en el Salón de Actos de Psicología y Logopedia (edificio nuevo), goteras graves en Filosofía e Industriales, y paralización prolongada de obras de ampliación." },
+            { day: 12, icon: "🛑", title: "Recorte en la estabilización del PDI joven (PAD a PPL)", content: "Retención de la carrera académica del profesorado Ayudante Doctor acreditado, al que se le obliga reglamentariamente a esperar 3 años para promocionar a Profesor Permanente Laboral (PPL), sumado a retrasos en las convocatorias." },
+            { day: 13, icon: "🗄️", title: "Recorte de personal técnico (PTGAS) y no cobertura de bajas", content: "Fórmulas de recortes indirectos al no cubrir jubilaciones ni bajas de larga duración en Bibliotecas, Conserjería, Aulas TIC y Mantenimiento, obligando al personal de categorías inferiores a asumir funciones superiores gratis." },
+            { day: 14, icon: "💸", title: "Recorte salarial e incumplimientos con el personal investigador", content: "Congelación salarial con más de 12 meses de retraso en la subida al personal predoctoral, retribuciones al nivel del SMI e impagos de trienios y sexenios reconocidos por sentencias." },
+            { day: 15, icon: "📖", title: "Recorte del 80% en los fondos bibliográficos", content: "Recorte de hasta el 80% en la adquisición de libros y revistas para las bibliotecas universitarias, centralización de la gestión y reducción de horarios de apertura en verano." },
+            { day: 16, icon: "💶", title: "Recortes en el Plan Propio e impago de complementos", content: "Deuda con el profesorado de los complementos autonómicos de 2024 y 2025, junto a retrasos de más de 5 meses en resolver las ayudas del Plan Propio de Investigación y falta de financiación para congresos y publicaciones." },
+            { day: 17, icon: "✊", title: "¡LA PLANTILLA DICE BASTA!", content: "Día del Acto Oficial de Apertura: La actividad universitaria sigue adelante únicamente por el sobreesfuerzo y la salud de sus trabajadores. ¡Nos vemos en la concentración del campus!" }
+        ];
+
+        let currentDay = 1;
+
+        function initCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            const firstDayOfWeek = 1; // 0 = lunes, 1 = martes (Sept 1 es martes)
+            
+            // Crear celdas vacías al inicio
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyBox = document.createElement('div');
+                emptyBox.className = 'day-box empty';
+                grid.appendChild(emptyBox);
+            }
+
+            // Crear los 17 días
+            data.forEach((item) => {
+                const box = document.createElement('div');
+                box.className = 'day-box unlocked';
+                if (item.day === currentDay) {
+                    box.classList.add('active');
+                }
+                box.innerHTML = `
+                    <div class="day-number">${String(item.day).padStart(2, '0')}</div>
+                    <div class="day-icon">${item.icon}</div>
+                `;
+                box.addEventListener('click', () => selectDay(item.day, box));
+                grid.appendChild(box);
+            });
+            showContent(currentDay);
+        }
+
+        function selectDay(dayNumber, element) {
+            currentDay = dayNumber;
+            updateCalendar();
+            showContent(dayNumber);
+        }
+
+        function updateCalendar() {
+            const boxes = document.querySelectorAll('.day-box:not(.empty)');
+            boxes.forEach((box, index) => {
+                const dayNum = index + 1;
+                if (dayNum <= currentDay) {
+                    box.classList.remove('locked');
+                    box.classList.add('unlocked');
+                    if (dayNum === currentDay) {
+                        box.classList.add('active');
+                    } else {
+                        box.classList.remove('active');
+                    }
+                } else {
+                    box.classList.add('locked');
+                    box.classList.remove('unlocked', 'active');
+                }
+            });
+        }
+
+        function showContent(dayNumber) {
+            const item = data[dayNumber - 1];
+            const section = document.getElementById('contentSection');
+            section.innerHTML = `
+                <h2>${item.icon} Día ${dayNumber} de Septiembre</h2>
+                <h3>${item.title}</h3>
+                <p>${item.content}</p>
+            `;
+        }
+
+        // Inicializar al cargar
+        initCalendar();
+    </script>
+</body>
+</html>
