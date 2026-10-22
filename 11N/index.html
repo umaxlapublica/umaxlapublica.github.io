@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huelga General 11N - UMA x la PÚBLICA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1b5e20;
+            color: white !important;
+            padding: 1rem;
+            text-align: center;
+        }
+        h1 {
+            color: white !important;
+        }
+        main {
+            padding: 2rem;
+            padding-bottom: 6rem;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        h1, h2 {
+            color: #1b5e20;
+        }
+        footer {
+            background-color: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 4rem;
+        }
+        a {
+            color: #2e7d32;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #1b5e20;
+            color: white;
+            padding: 0.5rem 1rem;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .menu-toggle {
+            display: none;
+            background-color: #1b5e20;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .menu-links {
+            display: flex;
+            gap: 1rem;
+        }
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .menu-links {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                background-color: #1b5e20;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 0.5rem 0;
+            }
+            .menu-links a {
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+            .menu-links.show {
+                display: flex;
+            }
+        }
+        section {
+            scroll-margin-top: 4rem;
+        }
+        .banners-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .banner-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid #1b5e20;
+            background-color: #e8f5e9;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        .banner-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 0.3rem;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #1b5e20;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.3rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .download-btn:hover {
+            background-color: #0d3b15;
+            text-decoration: none;
+        }
+        .example-banner {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .example-banner img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.3rem;
+        }
+        .example-banner p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; margin-top: 0;">
+        <img src="../logo_blanco.png" alt="UMA x la Pública Logo" style="width: 80px; height: auto;">
+        <h1 style="flex-grow: 1; text-align: center; margin: 0;">UMA X LA PÚBLICA</h1>
+        <img src="../logo_blanco.png" alt="UMA x la Pública Logo" style="width: 80px; height: auto;">
+    </header>
+
+    <nav>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="menu-links">
+            <a href="../index.html#quienes-somos">¿Quiénes somos?</a>
+            <a href="../index.html#reivindicaciones">Reivindicaciones</a>
+            <a href="../index.html#documentos">Documentos</a>
+            <a href="../index.html#noticias">Noticias</a>
+            <a href="../index.html#acciones">Acciones</a>
+            <a href="../datos.html">Datos</a>
+            <a href="../argumentos.html">Argumentos</a>
+            <a href="index.html">11N</a>
+            <a href="../index.html#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <main>
+        <h2>Huelga General 11 de Noviembre</h2>
+
+        <section id="descripcion">
+            <p>Material de apoyo para la huelga general del 11 de noviembre. Los siguientes banners están diseñados para ser utilizados en las firmas de correo electrónico.</p>
+            <div class="example-banner">
+                <img src="../ejemplo banner.jpg" alt="Ejemplo de banner en firma de correo">
+                <p>Ejemplo de cómo usar el banner en tu firma de correo</p>
+            </div>
+        </section>
+
+        <section id="banners">
+            <h3>Banners para firma de correo</h3>
+            <div class="banners-container">
+                <div class="banner-item">
+                    <img src="../banner_general.jpg" alt="Banner General 11N">
+                    <a href="../banner_general.jpg" download="banner_general.jpg" class="download-btn">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
+                <div class="banner-item">
+                    <img src="../banner_uma.jpg" alt="Banner UMA 11N">
+                    <a href="../banner_uma.jpg" download="banner_uma.jpg" class="download-btn">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 UMA x la PÚBLICA. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menuLinks = document.querySelector('.menu-links');
+            menuLinks.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
