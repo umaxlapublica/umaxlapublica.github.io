@@ -153,10 +153,377 @@
             height: auto;
             border-radius: 0.3rem;
         }
-        .example-banner p {
+        .action-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .action-card {
+            display: flex;
+            flex-direction: row;
+            border: none;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(27, 94, 32, 0.12);
+            gap: 3rem;
+            border-left: 6px solid #1b5e20;
+        }
+        .action-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(27, 94, 32, 0.18);
+        }
+        .action-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+        .action-media {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .action-preview {
+            width: 320px;
+            height: auto;
+            border: 2px solid #1b5e20;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+        }
+        .action-preview img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        .action-preview-small {
+            width: 240px;
+            height: auto;
+            border: 2px solid #1b5e20;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+        }
+        .action-preview-small img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        .banner-duo {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            align-items: center;
+            width: 100%;
+        }
+        .banner-item-single {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+            max-width: 600px;
+            justify-content: space-between;
+        }
+        .banner-item-single img {
+            width: 350px;
+            height: auto;
+            border: 2px solid #1b5e20;
+            border-radius: 0.5rem;
+            object-fit: contain;
+            background-color: #f9f9f9;
+            padding: 0.75rem;
+            box-shadow: 0 2px 6px rgba(27, 94, 32, 0.1);
+            flex-shrink: 0;
+        }
+        .banner-item-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+        .banner-item-label {
+            font-weight: bold;
+            color: #1b5e20;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .pdf-preview {
+            width: 200px;
+            height: 240px;
+            border: 3px solid #1b5e20;
+            border-radius: 0.8rem;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            color: #1b5e20;
+            font-weight: bold;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 4px 10px rgba(27, 94, 32, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .pdf-preview::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 14px;
+            height: 14px;
+            background-color: #1b5e20;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .pdf-preview i {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+            color: #1b5e20;
+            z-index: 1;
+        }
+        .pdf-preview-text {
             font-size: 0.9rem;
-            color: #666;
-            margin-top: 0.5rem;
+            line-height: 1.4;
+            font-weight: bold;
+            color: #0d3b15;
+            z-index: 1;
+            margin-bottom: 0.75rem;
+        }
+        .pdf-lines {
+            width: 100%;
+            height: 50px;
+            background-image: 
+                linear-gradient(to right, #1b5e20 70%, transparent 70%),
+                linear-gradient(to right, #1b5e20 70%, transparent 70%),
+                linear-gradient(to right, #1b5e20 70%, transparent 70%);
+            background-position: 0 8px, 0 20px, 0 32px;
+            background-size: 100% 2.5px;
+            background-repeat: no-repeat;
+            opacity: 0.6;
+            z-index: 1;
+        }
+        .action-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1b5e20 0%, #0d3b15 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-right: 1.5rem;
+            box-shadow: 0 4px 10px rgba(27, 94, 32, 0.2);
+        }
+        .action-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        .action-header-text h3 {
+            color: #1b5e20;
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .action-card h3 {
+            color: #1b5e20;
+            font-size: 1.4rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 700;
+        }
+        .action-card p {
+            color: #555;
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .action-download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: #1b5e20;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: 2px solid #1b5e20;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(27, 94, 32, 0.15);
+        }
+        .action-download-btn:hover {
+            background-color: #0d3b15;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(27, 94, 32, 0.25);
+            text-decoration: none;
+        }
+        .action-download-btn.secondary {
+            background-color: white;
+            color: #1b5e20;
+            border: 2px solid #1b5e20;
+        }
+        .action-download-btn.secondary:hover {
+            background-color: #e8f5e9;
+            color: #0d3b15;
+        }
+        .download-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .download-group p {
+            font-size: 0.75rem;
+            color: #888;
+            margin: 0.75rem 0 0 0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .banner-layout {
+            display: flex;
+            gap: 3rem;
+            align-items: stretch;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        .banner-col {
+            flex: 0 0 auto;
+        }
+        .example-col {
+            flex: 1;
+            position: relative;
+            min-width: 200px;
+        }
+        /* Absoluto para que su alto lo marquen solo los banners */
+        .example-banner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, #f8fafb 0%, #f0f3f5 100%);
+            border: 2px solid #1b5e20;
+            border-radius: 0.8rem;
+            padding: 1rem;
+            margin: 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .example-banner h4 {
+            margin: 0;
+            color: #1b5e20;
+            font-size: 1rem;
+        }
+        .example-banner img {
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+            object-fit: contain;
+            border-radius: 0.5rem;
+        }
+        .example-banner p {
+            color: #555;
+            margin: 0;
+            line-height: 1.4;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 900px) {
+            .action-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 2rem;
+                padding: 2rem;
+            }
+            .banner-layout {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .example-col {
+                min-height: 320px;
+            }
+            .action-number {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            .action-header {
+                justify-content: center;
+            }
+            .banner-duo {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .banner-item-single {
+                flex-direction: column;
+                gap: 1rem;
+                max-width: 100%;
+            }
+            .banner-item-single img {
+                width: 100%;
+                max-width: 300px;
+            }
+            .banner-item-buttons {
+                align-items: center;
+                width: 100%;
+            }
+            main {
+                padding: 1.5rem;
+                padding-bottom: 8rem;
+            }
+        }
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+            .action-card {
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            .action-preview {
+                width: 100%;
+                max-width: 280px;
+            }
+            .action-preview-small {
+                width: 100%;
+                max-width: 200px;
+            }
+            .banner-item-single img {
+                width: 100%;
+                max-width: 250px;
+            }
         }
     </style>
 </head>
@@ -185,28 +552,169 @@
     <main>
         <h2>Huelga General 11 de Noviembre</h2>
 
-        <section id="descripcion">
-            <p>Material de apoyo para la huelga general del 11 de noviembre. Los siguientes banners están diseñados para ser utilizados en las firmas de correo electrónico.</p>
-            <div class="example-banner">
-                <img src="../ejemplo banner.jpg" alt="Ejemplo de banner en firma de correo">
-                <p>Ejemplo de cómo usar el banner en tu firma de correo</p>
-            </div>
+        <section id="descripcion" style="background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%); padding: 2.5rem; border-radius: 1rem; margin-bottom: 3rem; border-left: 6px solid #1b5e20;">
+            <p style="font-size: 1.15rem; color: #1b5e20; line-height: 1.7; margin: 0; font-weight: 500;">
+                <strong>🎯 ¿Quieres apoyar la huelga del 11N?</strong> Aquí te mostramos <strong>5 formas fáciles</strong> de participar y ayudar a difundir este movimiento entre tus compañeras y compañeros.
+            </p>
         </section>
 
-        <section id="banners">
-            <h3>Banners para firma de correo</h3>
-            <div class="banners-container">
-                <div class="banner-item">
-                    <img src="../banner_general.jpg" alt="Banner General 11N">
-                    <a href="../banner_general.jpg" download="banner_general.jpg" class="download-btn">
-                        <i class="fas fa-download"></i> Descargar
-                    </a>
+        <section id="acciones">
+            <div class="action-grid">
+                <!-- Acción 1: Banner para Email -->
+                <div class="action-card" style="flex-direction: column;">
+                    <div style="width: 100%;">
+                        <div class="action-header">
+                            <div class="action-number">1</div>
+                            <div class="action-header-text">
+                                <h3>Añade el banner a tu firma de email</h3>
+                            </div>
+                        </div>
+                        <p>Muestra tu apoyo a la huelga en cada correo que envías. Descarga los banners diseñados para tu firma de correo electrónico.</p>
+                    </div>
+                    <div class="banner-layout">
+                        <div class="banner-col">
+                            <div class="banner-duo">
+                                <div class="banner-item-single">
+                                    <img src="banner_general.jpg" alt="Banner General 11N">
+                                    <div class="banner-item-buttons">
+                                        <div class="banner-item-label">Banner General</div>
+                                        <a href="banner_general.jpg" download="banner_general.jpg" class="action-download-btn" style="font-size: 0.75rem; padding: 0.5rem 1rem;">
+                                            <i class="fas fa-download"></i> Descargar
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="banner-item-single">
+                                    <img src="banner_uma.jpg" alt="Banner UMA 11N">
+                                    <div class="banner-item-buttons">
+                                        <div class="banner-item-label">Banner UMA</div>
+                                        <a href="banner_uma.jpg" download="banner_uma.jpg" class="action-download-btn secondary" style="font-size: 0.75rem; padding: 0.5rem 1rem;">
+                                            <i class="fas fa-download"></i> Descargar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example-col">
+                            <div class="example-banner">
+                                <h4>💡 Ejemplo: Cómo usar</h4>
+                                <img src="ejemplo banner.jpg" alt="Ejemplo de banner en firma de correo">
+                                <p><strong>Pasos:</strong> 1. Guarda el banner · 2. Abre tu correo · 3. Ve a Firma · 4. Inserta la imagen</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="banner-item">
-                    <img src="../banner_uma.jpg" alt="Banner UMA 11N">
-                    <a href="../banner_uma.jpg" download="banner_uma.jpg" class="download-btn">
-                        <i class="fas fa-download"></i> Descargar
-                    </a>
+
+                <!-- Acción 2: Foto de perfil WhatsApp -->
+                <div class="action-card">
+                    <div class="action-content">
+                        <div class="action-header">
+                            <div class="action-number">2</div>
+                            <div class="action-header-text">
+                                <h3>Pon esta foto en tu WhatsApp</h3>
+                            </div>
+                        </div>
+                        <p>Cambia tu foto de perfil en WhatsApp por esta imagen. Es una forma simple pero efectiva de mostrar tu solidaridad con la huelga.</p>
+                        <div class="action-buttons">
+                            <div class="download-group">
+                                <a href="yo_apoyo_11N.jpeg" download="yo_apoyo_11N.jpeg" class="action-download-btn" style="font-size: 0.75rem; padding: 0.5rem 1rem;">
+                                    <i class="fas fa-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-media">
+                        <div class="action-preview-small">
+                            <img src="yo_apoyo_11N.jpeg" alt="Yo apoyo 11N">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acción 3: Imprimir cartel -->
+                <div class="action-card">
+                    <div class="action-content">
+                        <div class="action-header">
+                            <div class="action-number">3</div>
+                            <div class="action-header-text">
+                                <h3>Imprime y cuelga el cartel</h3>
+                            </div>
+                        </div>
+                        <p>Descarga el cartel de la huelga e imprímelo. Luego cuélgalo en tu facultad, centro de trabajo, biblioteca o espacios públicos para informar a más gente.</p>
+                        <div class="action-buttons">
+                            <div class="download-group">
+                                <p>📄 Formato A4</p>
+                                <a href="1_CARTEL_HUELGA_11N.jpg" download="1_CARTEL_HUELGA_11N.jpg" class="action-download-btn" style="font-size: 0.75rem; padding: 0.5rem 1rem;">
+                                    <i class="fas fa-download"></i> JPG
+                                </a>
+                                <p>📋 Formato A3 (recomendado)</p>
+                                <a href="1_CARTEL_HUELGA_11N_A3.pdf" download="1_CARTEL_HUELGA_11N_A3.pdf" class="action-download-btn secondary" style="font-size: 0.75rem; padding: 0.5rem 1rem;">
+                                    <i class="fas fa-download"></i> PDF A3
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-media">
+                        <div class="action-preview-small">
+                            <img src="1_CARTEL_HUELGA_11N.jpg" alt="Cartel Huelga 11N">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acción 4: Leer FAQs -->
+                <div class="action-card">
+                    <div class="action-content">
+                        <div class="action-header">
+                            <div class="action-number">4</div>
+                            <div class="action-header-text">
+                                <h3>Lee las FAQs y comparte</h3>
+                            </div>
+                        </div>
+                        <p>Descarga el documento con las preguntas frecuentes sobre la huelga. Léelo para estar preparada y compártelo con tus compañeras para responder sus dudas.</p>
+                        <div class="action-buttons">
+                            <div class="download-group">
+                                <a href="2_FAQS_HUELGA_11N.pdf" download="2_FAQS_HUELGA_11N.pdf" class="action-download-btn" style="font-size: 0.75rem; padding: 0.5rem 1rem;">
+                                    <i class="fas fa-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-media">
+                        <div class="pdf-preview">
+                            <div style="text-align: center; width: 100%;">
+                                <i class="fas fa-question-circle" style="font-size: 3rem; margin-bottom: 0.5rem; display: block;"></i>
+                                <div class="pdf-preview-text">Preguntas<br>Frecuentes</div>
+                            </div>
+                            <div class="pdf-lines"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acción 5: Razones de la huelga -->
+                <div class="action-card">
+                    <div class="action-content">
+                        <div class="action-header">
+                            <div class="action-number">5</div>
+                            <div class="action-header-text">
+                                <h3>Lee y comparte las razones</h3>
+                            </div>
+                        </div>
+                        <p>Conoce a fondo por qué es importante esta huelga. Descarga el documento con las razones principales y comparte la información con tus compañeras.</p>
+                        <div class="action-buttons">
+                            <div class="download-group">
+                                <a href="3_RAZONES_HUELGA_11N.pdf" download="3_RAZONES_HUELGA_11N.pdf" class="action-download-btn" style="font-size: 0.75rem; padding: 0.5rem 1rem;">
+                                    <i class="fas fa-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-media">
+                        <div class="pdf-preview">
+                            <div style="text-align: center; width: 100%;">
+                                <i class="fas fa-lightbulb" style="font-size: 3rem; margin-bottom: 0.5rem; display: block;"></i>
+                                <div class="pdf-preview-text">Razones<br>de la Huelga</div>
+                            </div>
+                            <div class="pdf-lines"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
