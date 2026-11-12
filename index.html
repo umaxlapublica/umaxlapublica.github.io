@@ -139,6 +139,48 @@
             display: flex;
             gap: 1rem;
         }
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            max-width: 1100px;
+            margin: 1.2rem auto;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.9rem 1.2rem;
+            background-color: #1b5e20;
+            color: white;
+            border: 2px solid #1b5e20;
+            border-radius: 0.5rem;
+            font-size: 1.05rem;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 2px 6px rgba(27, 94, 32, 0.15);
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0d3b15;
+            color: white;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+        .btn.secondary {
+            background-color: white;
+            color: #1b5e20;
+        }
+        .btn.secondary:hover {
+            background-color: #e8f5e9;
+            color: #0d3b15;
+        }
+        @media (max-width: 600px) {
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+        }
         @media (max-width: 768px) {
             .menu-toggle {
                 display: block;
@@ -194,7 +236,6 @@
             <a href="#reivindicaciones">Reivindicaciones</a>
             <a href="#documentos">Documentos</a>
             <a href="#noticias">Noticias</a>
-            <a href="#17s">17S</a>
             <a href="#acciones">Acciones</a>
             <a href="#datos">Datos</a>
             <a href="argumentos.html">Argumentos</a>
@@ -204,54 +245,16 @@
 
     <main>
         <!-- Contenedor para redes sociales -->
-        <div style="display: flex; justify-content: center; gap: 1.2rem; margin: 1.2rem auto; flex-wrap: nowrap; max-width: 1100px;">
-            <!-- Grupo de difusión WhatsApp -->
-            <div style="flex: 1; min-width: 0; background: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; text-align: center;">
-                <span style="color: #1b5e20; font-size: 1rem; font-weight: bold;">
-                    📲 Únete a nuestro grupo de difusión<br>
-                    <span style="font-weight: normal; font-size: 0.97rem;">por WhatsApp</span>
-                </span>
-                <br>
-                <a href="https://chat.whatsapp.com/G1Fc7oIlPHEBShv6yy7C7D?mode=ems_copy_c" target="_blank">
-                    <img src="Newsletter2/difusion.jpeg" alt="Grupo de difusión por WhatsApp" style="max-width: 70px; height: auto; border-radius: 0.4rem; border:1.5px solid #1b5e20; margin-top: 0.5rem;">
-                </a>
-            </div>
-
-            <!-- Síguenos en Instagram -->
-            <div style="flex: 1; min-width: 0; background: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; text-align: center;">
-                <span style="color: #1b5e20; font-size: 1rem; font-weight: bold;">
-                    <i class="fab fa-instagram" style="color: #E4405F; margin-right: 0.5rem;"></i>Síguenos en nuestro<br>
-                    <span style="font-weight: normal; font-size: 0.97rem;">Instagram</span>
-                </span>
-                <br>
-                <a href="https://www.instagram.com/umaxlapublica/" target="_blank" style="display: inline-block; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 0.6rem 1.2rem; border-radius: 0.4rem; text-decoration: none; font-weight: bold; margin-top: 0.5rem;">
-                    <i class="fab fa-instagram" style="margin-right: 0.5rem;"></i>Ir a Instagram
-                </a>
-            </div>
-
-            <!-- Kit huelga 11N -->
-            <div style="flex: 1; min-width: 0; background: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; text-align: center;">
-                <span style="color: #1b5e20; font-size: 1rem; font-weight: bold;">
-                    ✊ Kit para la huelga 11N<br>
-                    <span style="font-weight: normal; font-size: 0.97rem;">banners, cartel, flyers y más</span>
-                </span>
-                <br>
-                <a href="11N/index.html" style="display: inline-block; background-color: #1b5e20; color: white; padding: 0.6rem 1.2rem; border-radius: 0.4rem; text-decoration: none; font-weight: bold; margin-top: 0.5rem;">
-                    <i class="fas fa-box-open" style="margin-right: 0.5rem;"></i>Ver kit
-                </a>
-            </div>
-
-            <!-- Camisetas -->
-            <div style="flex: 1; min-width: 0; background: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; text-align: center;">
-                <span style="color: #1b5e20; font-size: 1rem; font-weight: bold;">
-                    💚 Camisetas de UMA x<br>
-                    <span style="font-weight: normal; font-size: 0.97rem;">la Pública en oferta</span>
-                </span>
-                <br>
-                <a href="camisetas/" style="display: inline-block; background-color: #1b5e20; color: white; padding: 0.6rem 1.2rem; border-radius: 0.4rem; text-decoration: none; font-weight: bold; margin-top: 0.5rem;">
-                    <i class="fas fa-shirt" style="margin-right: 0.5rem;"></i>Ver camisetas
-                </a>
-            </div>
+        <div class="quick-links">
+            <a href="https://chat.whatsapp.com/G1Fc7oIlPHEBShv6yy7C7D?mode=ems_copy_c" target="_blank" rel="noopener" class="btn">
+                <i class="fab fa-whatsapp"></i> Grupo de difusión
+            </a>
+            <a href="https://www.instagram.com/umaxlapublica/" target="_blank" rel="noopener" class="btn">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="camisetas/" class="btn">
+                <i class="fas fa-shirt"></i> Camisetas
+            </a>
         </div>
 
 
