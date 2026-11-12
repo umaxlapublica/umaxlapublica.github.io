@@ -139,6 +139,53 @@
             display: flex;
             gap: 1rem;
         }
+        .accion {
+            background-color: #e8f5e9;
+            border: 1.5px solid #1b5e20;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .accion > img {
+            width: 260px;
+            max-width: 40%;
+            height: auto;
+            flex-shrink: 0;
+            border-radius: 0.5rem;
+            border: 2px solid #1b5e20;
+            cursor: zoom-in;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.88);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            cursor: zoom-out;
+        }
+        .lightbox.show {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 0.5rem;
+        }
+        @media (max-width: 600px) {
+            .accion {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .accion > img {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
         .quick-links {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -511,40 +558,65 @@
             <article>
                 <p><strong>"Los rectores universitarios advierten que la financiación mínima del 1% del PIB "no avanza al ritmo que gustaría""</strong>, Infobea (27 de marzo de 2026). <a href="https://www.infobae.com/america/agencias/2026/03/27/los-rectores-universitarios-advierten-que-la-financiacion-minima-del-1-del-pib-no-avanza-al-ritmo-que-gustaria/" target="_blank">Leer la noticia completa</a></p>
             </article>
+            <article>
+                <p><strong>"UMA por la Pública alerta del impacto de los recortes en el arranque del curso en la UMA"</strong>, Cadena SER Málaga (17 de septiembre de 2026). <a href="https://cadenaser.com/andalucia/2026/09/17/uma-por-la-publica-alerta-del-impacto-de-los-recortes-en-el-arranque-del-curso-en-la-uma-ser-malaga/" target="_blank">Leer la noticia completa</a></p>
+            </article>
+            <article>
+                <p><strong>"Noche Verde en la UMA: estudiantes duermen en la Facultad de Educación"</strong>, Diario Sur (10 de noviembre de 2026). <a href="https://www.diariosur.es/malaga-capital/noche-verde-uma-estudiantes-duermen-facultad-educacion-20261110085652-nt_amp.html" target="_blank">Leer la noticia completa</a></p>
+            </article>
+            <article>
+                <p><strong>"La comunidad educativa andaluza apoya la huelga general para reforzar el pulso a la Junta en defensa de lo público"</strong>, elDiario.es (11 de noviembre de 2026). <a href="https://www.eldiario.es/andalucia/comunidad-educativa-andaluza-apoya-huelga-general-reforzar-pulso-junta-defensa-publica_1_13643035.html" target="_blank">Leer la noticia completa</a></p>
+            </article>
         </section>
         <section id="acciones">
             <h2 style="color: #1b5e20;"><i class="fas fa-bullhorn"></i> Acciones</h2>
             <div style="display: flex; flex-direction: column; gap: 1.2rem;">
-                <div style="background-color: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; display: flex; align-items: center; gap: 1.2rem;">
-                    <img src="Fotos17S/17S.png" alt="Concentración 17 de septiembre 2026" style="max-width: 120px; height: auto; border-radius: 0.5rem; border: 2px solid #1b5e20;">
+                <h3 style="color: #1b5e20; margin: 0; border-bottom: 2px solid #1b5e20; padding-bottom: 0.3rem;">2026</h3>
+                <div class="accion">
+                    <img src="11N/larios11N.jpg" alt="Manifestación del 11N por la calle Larios">
+                    <div>
+                        <h3 style="color: #1b5e20; margin-top: 0;">Huelga educativa 11 de noviembre - Jornada histórica en Málaga</h3>
+                        <p>El 11 de noviembre vivimos una <strong>jornada histórica</strong> en Málaga y la huelga educativa fue un <strong>absoluto éxito</strong>. Gracias a toda la comunidad educativa, y a la universitaria en particular, por el apoyo masivo y la fuerza demostrados de principio a fin. Desde las 8:00 h organizamos piquetes informativos en los centros de la UMA, repartiendo octavillas y explicando los motivos de la huelga. A las 12:00 h nos concentramos en la Delegación Territorial de Educación y la concentración se convirtió en una marea que marchó hasta la Plaza de la Constitución por la calle Larios, con la pancarta elaborada en la <em>#NocheEnVerde</em> en la Facultad de Educación. Por la tarde, el <strong>bloque educativo</strong> volvió a ser numerosísimo y bailamos bajo la lluvia al ritmo de "E... Educación... Pública y de Calidad". Lo vivido este 11N es solo la semilla: este movimiento en defensa de la pública va a echar raíces y a crecer más fuerte que nunca. <a href="https://www.instagram.com/reel/DfmiZhlITl2/?utm_source=ig_web_copy_link&dlrf=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==" target="_blank" style="color: #2e7d32; font-weight: bold;">Ver vídeo viral en calle Larios (+100.000 visualizaciones)</a> · <a href="https://www.instagram.com/reel/DfnIMJFo5TA/?utm_source=ig_web_copy_link&vrfl=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==" target="_blank" style="color: #2e7d32; font-weight: bold;">Ver vídeo bailando bajo la lluvia</a></p>
+                    </div>
+                </div>
+                <div class="accion">
+                    <img src="11N/NocheVerde.jpeg" alt="Noche en Verde en la Facultad de Educación">
+                    <div>
+                        <h3 style="color: #1b5e20; margin-top: 0;">Noche en Verde 9-10 de noviembre - Dormimos por la pública</h3>
+                        <p>Del 9 al 10 de noviembre celebramos la <strong>Noche en Verde</strong> en la Facultad de Educación, con una asamblea de bienvenida a la que se sumaron muchísimos estudiantes y profesorado. Muchas personas se quedaron a dormir en la facultad para defender la universidad pública. Hubo <strong>talleres de pancartas</strong> (la de la manifestación del 11N salió de aquí) y de <strong>sindicalismo estudiantil</strong>, y se compartió una <strong>paella por la pública</strong>. Una forma de llegar a la huelga con ilusión, unidad y mucha organización.</p>
+                    </div>
+                </div>
+                <div class="accion">
+                    <img src="Fotos17S/17S.png" alt="Concentración 17 de septiembre 2026">
                     <div>
                         <h3 style="color: #1b5e20; margin-top: 0;">Concentración 17 de septiembre - Éxito de la movilización universitaria</h3>
                         <p>Éxito rotundo de la concentración de la comunidad universitaria en la inauguración del curso en la Facultad de Comercio. UMAxlaPública denunció la asfixia financiera de la UMA y la inacción del Rectorado. Se presentó el informe sobre recortes de la comunidad universitaria y se anunció la movilización conjunta de todas las etapas educativas, sumándose a la huelga educativa andaluza del 11 de noviembre. La jornada demostró que <strong>la educación pública, desde la cuna hasta la universidad, no se vende, se defiende</strong>.</p>
                     </div>
                 </div>
-                <div style="background-color: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; display: flex; align-items: center; gap: 1.2rem;">
-                    <img src="Fotos29A/Concentracion1.jpeg" alt="Concentración 29 de abril 2026" style="max-width: 120px; height: auto; border-radius: 0.5rem; border: 2px solid #1b5e20;">
+                <div class="accion">
+                    <img src="Fotos29A/Concentracion1.jpeg" alt="Concentración 29 de abril 2026">
                     <div>
                         <h3 style="color: #1b5e20; margin-top: 0;">Concentración 29 de abril - Universidades andaluzas por la pública</h3>
                         <p>El miércoles 29 de abril, UMA x la Pública se unió a movilizaciones coordinadas en toda Andalucía (Sevilla, Cádiz, Almería, Granada y Jaén) para presentar la plataforma "Universidades andaluzas por la pública". La concentración exigió el blindaje del 1% del PIB para las universidades públicas andaluzas y denunció la privatización encubierta del sistema universitario.</p>
                     </div>
                 </div>
-                <div style="background-color: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; display: flex; align-items: center; gap: 1.2rem;">
-                    <img src="Fotos26M26/Pleno26M.jpeg" alt="Pleno Ayuntamiento 26 de marzo 2026" style="max-width: 120px; height: auto; border-radius: 0.5rem; border: 2px solid #1b5e20;">
+                <div class="accion">
+                    <img src="Fotos26M26/Pleno26M.jpeg" alt="Pleno Ayuntamiento 26 de marzo 2026">
                     <div>
                         <h3 style="color: #1b5e20; margin-top: 0;">Participación en el pleno del Ayuntamiento 26 de marzo</h3>
                         <p>El miércoles 26 de marzo, Salvador Pineda, profesor de la Universidad de Málaga y representante de UMA x la Pública, intervino en el pleno del Ayuntamiento de Málaga para defender una financiación digna de la universidad pública. En su intervención destacó que "la Universidad de Málaga es la cuarta peor financiada de España y la segunda en Andalucía", lo que se traduce en que "de cada 20 profesores que se jubilan, solo se reemplazan 3". Pineda enfatizó que "lo que está en juego no es solo la universidad, es el modelo de sociedad" y lanzó un mensaje claro: "O defendemos una universidad pública fuerte, accesible y bien financiada, o aceptamos que la educación superior vuelva a ser un privilegio". <a href="https://www.instagram.com/reel/DWZX_NsgN6v/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==" target="_blank" style="color: #2e7d32; font-weight: bold;">Ver video de la intervención</a></p>
                     </div>
                 </div>
-                <div style="background-color: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; display: flex; align-items: center; gap: 1.2rem;">
-                    <img src="Fotos23S/concentracion.jpeg" alt="Concentración 23 septiembre UMA" style="max-width: 120px; height: auto; border-radius: 0.5rem; border: 2px solid #1b5e20;">
+                <h3 style="color: #1b5e20; margin: 0.5rem 0 0 0; border-bottom: 2px solid #1b5e20; padding-bottom: 0.3rem;">2025</h3>
+                <div class="accion">
+                    <img src="Fotos23S/concentracion.jpeg" alt="Concentración 23 septiembre UMA">
                     <div>
                         <h3 style="color: #1b5e20; margin-top: 0;">Concentración 23 de septiembre</h3>
                         <p>El martes 23 de septiembre, con motivo de la inauguración oficial del curso universitario, UMA x la Pública convocó una concentración en defensa de una financiación digna y contra los recortes, sumándose también la denuncia por el genocidio en Gaza. La comunidad universitaria se movilizó para exigir una universidad pública de calidad y justicia social.</p>
                     </div>
                 </div>
-                <div style="background-color: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; display: flex; align-items: center; gap: 1.2rem;">
-                    <img src="Fotos27M/Asamblea1.jpg" alt="Asamblea 1" style="max-width: 120px; height: auto; border-radius: 0.5rem; border: 2px solid #1b5e20;">
+                <div class="accion">
+                    <img src="Fotos27M/Asamblea1.jpg" alt="Asamblea 1">
                     <div>
                         <h3 style="color: #1b5e20; margin-top: 0;">Asambleas 27 de mayo</h3>
                         <p>El pasado martes, 27 de mayo, a las 12:00h, se celebraron asambleas simultáneas en los tres campus de la UMA para debatir sobre los recortes y las próximas movilizaciones:</p>
@@ -556,15 +628,15 @@
                         <p>Esta convocatoria estuvo comunicada como un paro laboral de 3 horas (11:30h a 14:30h) para facilitar la asistencia de PDI y PTGAS.</p>
                     </div>
                 </div>
-                <div style="background-color: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; display: flex; align-items: center; gap: 1.2rem;">
-                    <img src="Fotos22M/Ayuntamiento1.JPG" alt="Ayuntamiento 1" style="max-width: 120px; height: auto; border-radius: 0.5rem; border: 2px solid #1b5e20;">
+                <div class="accion">
+                    <img src="Fotos22M/Ayuntamiento1.JPG" alt="Ayuntamiento 1">
                     <div>
                         <h3 style="color: #1b5e20; margin-top: 0;">Participación en el pleno del Ayuntamiento 22 de mayo</h3>
                         <p>El pasado lunes, 22 de mayo, representantes de UMA x la Pública participaron en el pleno del Ayuntamiento de Málaga para defender la universidad pública y exponer las problemáticas derivadas de los recortes. Durante la intervención, se destacó la importancia de una educación accesible y de calidad para todos.</p>
                     </div>
                 </div>
-                <div style="background-color: #e8f5e9; border: 1.5px solid #1b5e20; border-radius: 0.5rem; padding: 1rem; display: flex; align-items: center; gap: 1.2rem;">
-                    <img src="Fotos15M/Concentracion1.jpg" alt="Concentración 1" style="max-width: 120px; height: auto; border-radius: 0.5rem; border: 2px solid #1b5e20;">
+                <div class="accion">
+                    <img src="Fotos15M/Concentracion1.jpg" alt="Concentración 1">
                     <div>
                         <h3 style="color: #1b5e20; margin-top: 0;">Concentración 15 de mayo</h3>
                         <p>El pasado jueves, 15 de mayo, se llevó a cabo una concentración frente al Rectorado de la UMA para protestar contra los recortes y exigir una universidad pública de calidad. La comunidad universitaria se unió para alzar su voz en defensa de sus derechos.</p>
@@ -722,6 +794,23 @@
             const menuLinks = document.querySelector('.menu-links');
             menuLinks.classList.toggle('show');
         }
+        // Amplía las fotos de las acciones al pinchar en ellas
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.innerHTML = '<img alt="">';
+        document.body.appendChild(lightbox);
+        const lightboxImg = lightbox.querySelector('img');
+        document.querySelectorAll('.accion > img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('show');
+            });
+        });
+        lightbox.addEventListener('click', () => lightbox.classList.remove('show'));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') lightbox.classList.remove('show');
+        });
         // Elimina el script de confirmación del formulario participa
     </script>
 </body>
