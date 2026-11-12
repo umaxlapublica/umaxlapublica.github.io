@@ -135,6 +135,9 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
+        .menu-backdrop {
+            display: none;
+        }
         .menu-links {
             display: flex;
             gap: 1rem;
@@ -229,26 +232,53 @@
             }
         }
         @media (max-width: 768px) {
+            nav {
+                justify-content: flex-start;
+            }
             .menu-toggle {
                 display: block;
             }
+            .menu-backdrop {
+                display: block;
+                position: fixed;
+                inset: 0;
+                z-index: 1;
+                background: rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+            .menu-backdrop.show {
+                opacity: 1;
+                pointer-events: auto;
+            }
             .menu-links {
-                display: none;
+                display: flex;
                 flex-direction: column;
                 gap: 0;
                 background-color: #1b5e20;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 0;
                 left: 0;
-                width: 100%;
-                padding: 0.5rem 0;
+                bottom: 0;
+                width: 75%;
+                max-width: 280px;
+                z-index: 2;
+                padding: 1rem 0;
+                overflow-y: auto;
+                transform: translateX(-100%);
+                visibility: hidden;
+                transition: transform 0.3s ease, visibility 0.3s;
+                box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
             }
             .menu-links a {
-                padding: 0.5rem 1rem;
-                text-align: center;
+                padding: 0.9rem 1.5rem;
+                text-align: left;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15);
             }
             .menu-links.show {
-                display: flex;
+                transform: translateX(0);
+                visibility: visible;
             }
             .novedades-container {
                 flex-direction: column; /* Stack boxes vertically */
@@ -277,7 +307,8 @@
 
     <!-- Navigation bar below the header -->
     <nav>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú">☰</button>
+        <div class="menu-backdrop" onclick="toggleMenu(false)"></div>
         <div class="menu-links">
             <a href="#quienes-somos">¿Quiénes somos?</a>
             <a href="#reivindicaciones">Reivindicaciones</a>
@@ -801,10 +832,20 @@
         <p>© 2025 Coordinadora UMA x la Pública</p>
     </footer>
     <script>
-        function toggleMenu() {
+        function toggleMenu(open) {
             const menuLinks = document.querySelector('.menu-links');
-            menuLinks.classList.toggle('show');
+            const backdrop = document.querySelector('.menu-backdrop');
+            const show = typeof open === 'boolean' ? open : !menuLinks.classList.contains('show');
+            menuLinks.classList.toggle('show', show);
+            backdrop.classList.toggle('show', show);
+            document.body.style.overflow = show ? 'hidden' : '';
         }
+        document.querySelectorAll('.menu-links a').forEach(a => {
+            a.addEventListener('click', () => toggleMenu(false));
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') toggleMenu(false);
+        });
         // Amplía las fotos de las acciones al pinchar en ellas
         const lightbox = document.createElement('div');
         lightbox.className = 'lightbox';
