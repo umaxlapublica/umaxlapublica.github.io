@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Actas · UMA x la Pública</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
+            color: #1b5e20;
+            margin: 0;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #1b5e20;
+            padding: 0.8rem 1.2rem;
+        }
+        header a { color: #fff; font-weight: bold; text-decoration: none; }
+        header a:hover { text-decoration: underline; }
+        main { max-width: 52rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+        h1 { margin: 0 0 1rem; }
+        .card {
+            background: #fff;
+            border: 2px solid #1b5e20;
+            border-radius: 0.5rem;
+            padding: 1.5rem 1.8rem;
+            box-shadow: 0 2px 8px rgba(27,94,32,0.08);
+            margin-bottom: 1.2rem;
+        }
+        [hidden] { display: none !important; }
+
+        /* Pantalla de contraseña */
+        #lock { max-width: 24rem; margin: 4rem auto 0; text-align: center; }
+        #lock p { color: #333; }
+        #lock input {
+            width: 100%;
+            padding: 0.7rem;
+            font-size: 1rem;
+            border: 2px solid #1b5e20;
+            border-radius: 0.4rem;
+            margin: 0.5rem 0;
+        }
+        button, .btn {
+            background-color: #1b5e20;
+            color: #fff;
+            border: none;
+            border-radius: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        button:hover, .btn:hover { background-color: #2e7d32; }
+        #err { color: #b71c1c; font-weight: bold; min-height: 1.4em; margin: 0.6rem 0 0; }
+
+        /* Explicación */
+        .intro p { color: #222; line-height: 1.55; margin: 0 0 0.9rem; white-space: pre-line; }
+        .tipo { border-left: 6px solid var(--c, #777); padding: 0.1rem 0 0.1rem 0.9rem; margin: 0 0 1rem; }
+        .tipo b { color: var(--c, #333); display: block; margin-bottom: 0.15rem; }
+        .tipo span { color: #222; line-height: 1.5; }
+
+        /* Filtros y lista */
+        .filtros { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .filtros button {
+            background: #fff;
+            color: #1b5e20;
+            border: 2px solid #1b5e20;
+            padding: 0.35rem 0.8rem;
+            font-size: 0.9rem;
+        }
+        .filtros button.on { background: #1b5e20; color: #fff; }
+        h2 { margin: 1.4rem 0 0.5rem; font-size: 1.2rem; }
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 0.9rem;
+            background: #fff;
+            border: 1px solid #c8e6c9;
+            border-left: 6px solid var(--c, #777);
+            border-radius: 0.3rem;
+            margin-bottom: 0.4rem;
+            color: #222;
+            text-decoration: none;
+        }
+        .item:hover { background: #f1f8f2; }
+        .item .fecha { font-weight: bold; min-width: 8.5rem; }
+        .chip {
+            background: var(--c, #777);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 0.15rem 0.6rem;
+            border-radius: 1rem;
+        }
+
+        /* Lectura de un acta */
+        .acta h1 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+        .acta .texto {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            font-size: 1.02rem;
+            line-height: 1.65;
+            color: #222;
+            margin-top: 1.2rem;
+        }
+        .nav { display: flex; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.2rem; }
+        .nav .btn { background: #fff; color: #1b5e20; border: 2px solid #1b5e20; }
+        .nav .btn:hover { background: #e8f5e9; }
+        .nav .off { visibility: hidden; }
+        @media (max-width: 600px) {
+            .card { padding: 1.1rem 1rem; }
+            .item { flex-wrap: wrap; gap: 0.3rem 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header><a href="../index.html">&larr; Volver a la web</a></header>
+    <main>
+        <section id="lock" class="card">
+            <h1>Actas</h1>
+            <p>Acceso restringido a quienes participan en el movimiento. Introduce la contraseña.</p>
+            <form id="form">
+                <input type="password" id="pw" placeholder="Contraseña" autocomplete="current-password" autofocus>
+                <button type="submit">Entrar</button>
+            </form>
+            <p id="err" role="alert"></p>
+        </section>
+        <section id="app" hidden></section>
+    </main>
+
+    <script>
+    const P = __PAYLOAD__;
+
+    const TIPOS = {
+        'umaxlapublica':          { label: 'UMA x la Pública',        color: '#1b5e20' },
+        'asamblea universidades': { label: 'Asamblea universidades',  color: '#1565c0' },
+        'asamblea andaluza':      { label: 'Asamblea andaluza',       color: '#bf360c' },
+        'coordinadora andaluza':  { label: 'Coordinadora andaluza',   color: '#6a1b9a' },
+        'asamblea provincial':    { label: 'Asamblea provincial',     color: '#00695c' }
+    };
+    const tipo = t => TIPOS[t] || { label: t.charAt(0).toUpperCase() + t.slice(1), color: '#555' };
+
+    const $ = id => document.getElementById(id);
+    const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+    const el = (tag, props = {}, ...kids) => {
+        const e = document.createElement(tag);
+        Object.assign(e, props);
+        kids.forEach(k => e.append(k));
+        return e;
+    };
+    const fechaLarga = d => {
+        const [y, m, dd] = d.split('-').map(Number);
+        return new Date(y, m - 1, dd).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+    };
+    const fechaCorta = d => {
+        const [y, m, dd] = d.split('-').map(Number);
+        return new Date(y, m - 1, dd).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+    };
+
+    async function descifrar(password) {
+        const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(password.normalize('NFC')),
+            'PBKDF2', false, ['deriveKey']);
+        const key = await crypto.subtle.deriveKey(
+            { name: 'PBKDF2', salt: b64(P.salt), iterations: P.iter, hash: 'SHA-256' },
+            base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+        const plano = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(P.iv) }, key, b64(P.ct));
+        return JSON.parse(new TextDecoder().decode(plano));
+    }
+
+    let datos = null;
+    let filtro = '';
+
+    function vistaIndice() {
+        const app = $('app');
+        app.replaceChildren();
+
+        const intro = el('div', { className: 'card intro' });
+        datos.intro.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean).slice(1).forEach(bloque => {
+            const m = bloque.match(/^\((.+?)\)\s*\n([\s\S]*)$/);
+            if (m) {
+                const t = tipo(m[1].trim().toLowerCase());
+                const caja = el('div', { className: 'tipo' }, el('b', { textContent: t.label }), el('span', { textContent: m[2].trim() }));
+                caja.style.setProperty('--c', t.color);
+                intro.append(caja);
+            } else {
+                intro.append(el('p', { textContent: bloque }));
+            }
+        });
+        app.append(el('h1', { textContent: 'Actas' }), intro);
+
+        const tipos = [...new Set(datos.actas.map(a => a.type))];
+        const filtros = el('div', { className: 'filtros' });
+        [['', 'Todas'], ...tipos.map(t => [t, tipo(t).label])].forEach(([valor, texto]) => {
+            const b = el('button', { type: 'button', textContent: texto, className: valor === filtro ? 'on' : '' });
+            b.onclick = () => { filtro = valor; vistaIndice(); };
+            filtros.append(b);
+        });
+        app.append(filtros);
+
+        const lista = datos.actas.filter(a => !filtro || a.type === filtro).slice().reverse();
+        let anio = null;
+        lista.forEach(a => {
+            const y = a.date.slice(0, 4);
+            if (y !== anio) { anio = y; app.append(el('h2', { textContent: y })); }
+            const t = tipo(a.type);
+            const item = el('a', { className: 'item', href: '#' + a.id },
+                el('span', { className: 'fecha', textContent: fechaCorta(a.date) }),
+                el('span', { className: 'chip', textContent: t.label }));
+            item.style.setProperty('--c', t.color);
+            app.append(item);
+        });
+        window.scrollTo(0, 0);
+    }
+
+    function vistaActa(i) {
+        const a = datos.actas[i];
+        const t = tipo(a.type);
+        const app = $('app');
+        app.replaceChildren();
+
+        const chip = el('span', { className: 'chip', textContent: t.label });
+        chip.style.setProperty('--c', t.color);
+        const enlace = (j, texto) => j < 0 || j >= datos.actas.length
+            ? el('span', { className: 'btn off', textContent: texto })
+            : el('a', { className: 'btn', href: '#' + datos.actas[j].id, textContent: texto });
+        const nav = () => el('div', { className: 'nav' }, enlace(i - 1, '← Anterior'),
+            el('a', { className: 'btn', href: '#', textContent: 'Todas las actas' }), enlace(i + 1, 'Siguiente →'));
+
+        app.append(el('div', { className: 'card acta' },
+            el('h1', { textContent: fechaLarga(a.date) }), chip,
+            el('div', { className: 'texto', textContent: a.text }), nav()));
+        window.scrollTo(0, 0);
+    }
+
+    function pintar() {
+        if (!datos) return;
+        const id = decodeURIComponent(location.hash.slice(1));
+        const i = datos.actas.findIndex(a => a.id === id);
+        if (i >= 0) vistaActa(i); else vistaIndice();
+    }
+
+    async function entrar(password, silencioso) {
+        try {
+            datos = await descifrar(password);
+        } catch (e) {
+            sessionStorage.removeItem('actas-pw');
+            if (!silencioso) $('err').textContent = 'Contraseña incorrecta.';
+            return false;
+        }
+        sessionStorage.setItem('actas-pw', password);
+        $('lock').hidden = true;
+        $('app').hidden = false;
+        pintar();
+        return true;
+    }
+
+    $('form').addEventListener('submit', async ev => {
+        ev.preventDefault();
+        $('err').textContent = 'Comprobando…';
+        if (!await entrar($('pw').value, false)) $('pw').select();
+        else $('err').textContent = '';
+    });
+    window.addEventListener('hashchange', pintar);
+
+    if (!window.crypto || !crypto.subtle) {
+        $('err').textContent = 'Este navegador no puede abrir las actas (hace falta conexión segura, https).';
+    } else {
+        const guardada = sessionStorage.getItem('actas-pw');
+        if (guardada) entrar(guardada, true);
+    }
+    </script>
+</body>
+</html>
