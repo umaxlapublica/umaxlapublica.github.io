@@ -61,7 +61,7 @@
         /* Explicación */
         .intro p { color: #222; line-height: 1.55; margin: 0 0 0.9rem; white-space: pre-line; }
         .tipo { border-left: 6px solid var(--c, #777); padding: 0.1rem 0 0.1rem 0.9rem; margin: 0 0 1rem; }
-        .tipo b { color: var(--c, #333); display: block; margin-bottom: 0.15rem; }
+        .tipo b { color: var(--tt, #333); display: block; margin-bottom: 0.15rem; }
         .tipo span { color: #222; line-height: 1.5; }
 
         /* Filtros y lista */
@@ -92,7 +92,7 @@
         .item .fecha { font-weight: bold; min-width: 8.5rem; }
         .chip {
             background: var(--c, #777);
-            color: #fff;
+            color: var(--fg, #fff);
             font-size: 0.8rem;
             font-weight: bold;
             padding: 0.15rem 0.6rem;
@@ -142,9 +142,15 @@
         'asamblea universidades': { label: 'Asamblea universidades',  color: '#1565c0' },
         'asamblea andaluza':      { label: 'Asamblea andaluza',       color: '#bf360c' },
         'coordinadora andaluza':  { label: 'Coordinadora andaluza',   color: '#6a1b9a' },
-        'asamblea provincial':    { label: 'Asamblea provincial',     color: '#00695c' }
+        // fg: texto sobre la etiqueta; titulo: texto del tipo sobre fondo blanco (por defecto, blanco y el propio color)
+        'asamblea provincial':    { label: 'Asamblea provincial',     color: '#fbc02d', fg: '#1b1b1b', titulo: '#7a5c00' }
     };
     const tipo = t => TIPOS[t] || { label: t.charAt(0).toUpperCase() + t.slice(1), color: '#555' };
+    const pinta = (e, t) => {
+        e.style.setProperty('--c', t.color);
+        e.style.setProperty('--fg', t.fg || '#fff');
+        e.style.setProperty('--tt', t.titulo || t.color);
+    };
 
     const $ = id => document.getElementById(id);
     const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
@@ -186,7 +192,7 @@
             if (m) {
                 const t = tipo(m[1].trim().toLowerCase());
                 const caja = el('div', { className: 'tipo' }, el('b', { textContent: t.label }), el('span', { textContent: m[2].trim() }));
-                caja.style.setProperty('--c', t.color);
+                pinta(caja, t);
                 intro.append(caja);
             } else {
                 intro.append(el('p', { textContent: bloque }));
@@ -212,7 +218,7 @@
             const item = el('a', { className: 'item', href: '#' + a.id },
                 el('span', { className: 'fecha', textContent: fechaCorta(a.date) }),
                 el('span', { className: 'chip', textContent: t.label }));
-            item.style.setProperty('--c', t.color);
+            pinta(item, t);
             app.append(item);
         });
         window.scrollTo(0, 0);
@@ -225,7 +231,7 @@
         app.replaceChildren();
 
         const chip = el('span', { className: 'chip', textContent: t.label });
-        chip.style.setProperty('--c', t.color);
+        pinta(chip, t);
         const enlace = (j, texto) => j < 0 || j >= datos.actas.length
             ? el('span', { className: 'btn off', textContent: texto })
             : el('a', { className: 'btn', href: '#' + datos.actas[j].id, textContent: texto });
